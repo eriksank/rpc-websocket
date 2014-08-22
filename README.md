@@ -28,7 +28,7 @@
 <a name="synopsis"></a>
 
 ##1\. Synopsis
-RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.
+*RPC WebSocket* is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.
  
 
 
@@ -66,7 +66,7 @@ npm install engine.io-client
 <a name="browsersupport"></a>
 
 ##4\. Browser support
-The module comes with a browserified version:
+The module comes with a _browserified_ version:
 
         browser-support/bundle.js
 
@@ -74,7 +74,7 @@ And a minimized version thereof:
 
         browser-support/bundle.min.js
 
-You can use RPC WebSocket directly in the browser like this:
+You can use _RPC WebSocket_ directly in the browser like this:
 
 ```javascript
 var webSocket = new WebSocket('ws://html5rocks.websocket.org/echo');
