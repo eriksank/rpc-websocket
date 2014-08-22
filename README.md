@@ -13,22 +13,25 @@
 0.5.5\.  [Handling beforeSend/afterSend events](#handlingbeforesend/aftersendevents)  
 0.5.6\.  [Looping over RPC calls](#loopingoverrpccalls)  
 0.6\.  [API](#api)  
-0.6.1\.  [Client](#client)  
-0.6.2\.  [Server](#server)  
-1\.  [rpc-websocket/RpcServer](#rpc-websocket/rpcserver)  
-1.1\.  [class: rpc-websocket/RpcServer~Wraps a websocket server object](#class:rpc-websocket/rpcserver~wrapsawebsocketserverobject)  
-1.1.1\.  [new rpc-websocket/RpcServer~Wraps a websocket server object(server)](#newrpc-websocket/rpcserver~wrapsawebsocketserverobjectserver)  
-1.2\.  [Why RPC Socket?](#whyrpcsocket?)  
-1.2.1\.  [What is wrong with ajax?](#whatiswrongwithajax?)  
-1.2.2\.  [What is wrong with json-rpc?](#whatiswrongwithjson-rpc?)  
-1.2.3\.  [What is wrong with socket.io?](#whatiswrongwithsocket.io?)  
-1.3\.  [Development](#development)  
-1.4\.  [building](#building)  
-1.5\.  [Other publications](#otherpublications)  
-1.6\.  [Contact](#contact)  
-1.6.1\.  [Support](#support)  
-1.6.2\.  [Projects](#projects)  
-1.7\.  [License](#license)  
+0.6.1\.  [Socket](#socket)  
+1\.  [rpc-websocket/RpcSocket](#rpc-websocket/rpcsocket)  
+1.1\.  [class: rpc-websocket/RpcSocket~Wraps a websocket object](#class:rpc-websocket/rpcsocket~wrapsawebsocketobject)  
+1.1.1\.  [new rpc-websocket/RpcSocket~Wraps a websocket object(ws)](#newrpc-websocket/rpcsocket~wrapsawebsocketobjectws)  
+1.1.2\.  [Server](#server)  
+2\.  [rpc-websocket/RpcServer](#rpc-websocket/rpcserver)  
+2.1\.  [class: rpc-websocket/RpcServer~Wraps a websocket server object](#class:rpc-websocket/rpcserver~wrapsawebsocketserverobject)  
+2.1.1\.  [new rpc-websocket/RpcServer~Wraps a websocket server object(server)](#newrpc-websocket/rpcserver~wrapsawebsocketserverobjectserver)  
+2.2\.  [Why RPC Socket?](#whyrpcsocket?)  
+2.2.1\.  [What is wrong with ajax?](#whatiswrongwithajax?)  
+2.2.2\.  [What is wrong with json-rpc?](#whatiswrongwithjson-rpc?)  
+2.2.3\.  [What is wrong with socket.io?](#whatiswrongwithsocket.io?)  
+2.3\.  [Development](#development)  
+2.4\.  [building](#building)  
+2.5\.  [Other publications](#otherpublications)  
+2.6\.  [Contact](#contact)  
+2.6.1\.  [Support](#support)  
+2.6.2\.  [Projects](#projects)  
+2.7\.  [License](#license)  
 
 
 <a name="synopsis"></a>
@@ -321,25 +324,49 @@ When the enclosure function exits, the logic inside of the function will hang on
 
 ##0.6\. API
 
-<a name="client"></a>
+<a name="socket"></a>
 
-### 0.6.1\. Client
+### 0.6.1\. Socket
 
+<a name="module_rpc-websocket/RpcSocket"></a>
+<a name="rpc-websocket/rpcsocket"></a>
+
+#1\. rpc-websocket/RpcSocket
+Module to wrap you websocket object in order to give it RPC capabilities.
+
+<a name="module_rpc-websocket/RpcSocket..Wraps a websocket object"></a>
+<a name="class:rpc-websocket/rpcsocket~wrapsawebsocketobject"></a>
+
+##1.1\. class: rpc-websocket/RpcSocket~Wraps a websocket object
+**Members**
+
+* [class: rpc-websocket/RpcSocket~Wraps a websocket object](#module_rpc-websocket/RpcSocket..Wraps a websocket object)
+  * [new rpc-websocket/RpcSocket~Wraps a websocket object(ws)](#new_module_rpc-websocket/RpcSocket..Wraps a websocket object)
+
+<a name="new_module_rpc-websocket/RpcSocket..Wraps a websocket object"></a>
+<a name="newrpc-websocket/rpcsocket~wrapsawebsocketobjectws"></a>
+
+###1.1.1\. new rpc-websocket/RpcSocket~Wraps a websocket object(ws)
+**Params**
+
+- ws `object` - The websocket object to wrap  
+
+**Scope**: inner class of [rpc-websocket/RpcSocket](#module_rpc-websocket/RpcSocket)  
 
 <a name="server"></a>
 
-### 0.6.2\. Server
+### 1.1.2\. Server
 
 <a name="module_rpc-websocket/RpcServer"></a>
 <a name="rpc-websocket/rpcserver"></a>
 
-#1\. rpc-websocket/RpcServer
+#2\. rpc-websocket/RpcServer
 Module to wrap you websocket server object in order to give it RPC capabilities.
 
 <a name="module_rpc-websocket/RpcServer..Wraps a websocket server object"></a>
 <a name="class:rpc-websocket/rpcserver~wrapsawebsocketserverobject"></a>
 
-##1.1\. class: rpc-websocket/RpcServer~Wraps a websocket server object
+##2.1\. class: rpc-websocket/RpcServer~Wraps a websocket server object
 **Members**
 
 * [class: rpc-websocket/RpcServer~Wraps a websocket server object](#module_rpc-websocket/RpcServer..Wraps a websocket server object)
@@ -348,7 +375,7 @@ Module to wrap you websocket server object in order to give it RPC capabilities.
 <a name="new_module_rpc-websocket/RpcServer..Wraps a websocket server object"></a>
 <a name="newrpc-websocket/rpcserver~wrapsawebsocketserverobjectserver"></a>
 
-###1.1.1\. new rpc-websocket/RpcServer~Wraps a websocket server object(server)
+###2.1.1\. new rpc-websocket/RpcServer~Wraps a websocket server object(server)
 **Params**
 
 - server `object` - The server object to wrap  
@@ -357,16 +384,16 @@ Module to wrap you websocket server object in order to give it RPC capabilities.
 
 <a name="whyrpcsocket?"></a>
 
-##1.2\. Why RPC Socket?
+##2.2\. Why RPC Socket?
 
 <a name="whatiswrongwithajax?"></a>
 
-### 1.2.1\. What is wrong with ajax?
+### 2.2.1\. What is wrong with ajax?
 With half of the internet nowadays hanging together through ajax, it is easy to forget that ajax is just a hack in which we reuse the http protocol to do something that it wasn't designed to do. It is not particularly suitable as an RPC mechanism, but since ajax is all we had until recently, that is indeed what we used to build half of the existing internet.
 
 <a name="whatiswrongwithjson-rpc?"></a>
 
-### 1.2.2\. What is wrong with json-rpc?
+### 2.2.2\. What is wrong with json-rpc?
 [json-rpc](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to formal schema.  At the same time, it tends to create an intricate bureaucratic procedure at a point at which most developers would rather be in prototyping mode. So, while prototyping the initial versions of an application, json-rpc gives us the impression: __Get out of my way, because now I am too busy for this, and I've got other things on my mind.__
 
 There would be nothing wrong with adding structural validation logic before sending a message, later on, but there are many ways to do that. One size will not fit all. Furthermore, in practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
@@ -375,7 +402,7 @@ With RPC WebSocket, you can still send whatever you like as messages, just like 
 
 <a name="whatiswrongwithsocket.io?"></a>
 
-### 1.2.3\. What is wrong with socket.io?
+### 2.2.3\. What is wrong with socket.io?
 Somewhere in the future, there will probably be nothing wrong with socket.io. Today, in August 2014, there were at some point [600+ outstanding, unresolved issues](https://github.com/Automattic/socket.io/issues). I personally also logged a trouble ticket for something that we can only call a bug, but I have not heard back from their __helpdesk__.
 
 Socket.io supports lots of features on top of websockets: such as support for __express__ and __koa__. They also implements numerous scenarios in which you can use websockets with __namespaces__ and in which you can join and leave __rooms__. I only needed the __custom events__ (=message types) and __acknowledgements__ (=rpc). I did not want or implement __namespaces__, because you can just prefix your message types with a namespace in order to create separate channels in one websocket. Life is already full enough of useless complications.
@@ -386,7 +413,7 @@ If you combine the socket.io features in unexpected ways, you may be in for a su
 
 <a name="development"></a>
 
-##1.3\. Development
+##2.3\. Development
 
 **Standard websockets:** [engine.io](https://github.com/Automattic/engine.io), [engine.io-client](https://github.com/Automattic/engine.io-client)
 **browser support:** [browserify](https://github.com/substack/node-browserify), [uglifyjs](https://github.com/mishoo/UglifyJS)
@@ -396,36 +423,36 @@ If you combine the socket.io features in unexpected ways, you may be in for a su
 
 <a name="building"></a>
 
-## 1.4\. building
+## 2.4\. building
 
 Execute the `build.sh` script to re-build the project from sources.
 
 <a name="otherpublications"></a>
 
-##1.5\. Other publications
+##2.5\. Other publications
 
 * At [github.com](https://github.com/eriksank)
 * At [www.npmjs.org](https://www.npmjs.org/~eriksank)
 
 <a name="contact"></a>
 
-## 1.6\. Contact
+## 2.6\. Contact
 
 <a name="support"></a>
 
-###1.6.1\. Support
+###2.6.1\. Support
 For trouble tickets with RPC WebSocket, please, use the github [issue list](https://github.com/eriksank/rpc-websocket/issues).
 
 <a name="projects"></a>
 
-###1.6.2\. Projects
+###2.6.2\. Projects
 I am available for commercial projects.
 
 In commercial projects, I often do the initial prototyping by myself. After that, I manage external developer contributions through github and bitbucket. I usually end up being the long-term go-to person for how to evolve the system. My work involves reviewing Javascript for both the web and nodejs. I occasionally still do PHP. The startups I work for, are usually located elsewhere, but I do all of my work from Cambodia. If you are in need of a source code manager for your project, feel free to contact me at erik@sankuru.biz.
 
 <a name="license"></a>
 
-##1.7\. License
+##2.7\. License
 
         RPC Websocket
         Written by Erik Poupaert, Cambodia
