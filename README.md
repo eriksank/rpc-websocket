@@ -274,30 +274,60 @@ ws.on('afterReceive',function(data) {
 You could easily run into very subtle bugs when you start looping over RPC calls. For example:
 
 ```javascript
-describe.skip('rpc', function(){
+var assert=require('assert');
+var ChildProcess=require('child_process');
 
-        var engine = require('engine.io');
-        var server = engine.listen(8082);
-        var RpcServer=require('rpc-websocket').server;
-        var wss=new RpcServer(server);
+describe('rpc', function(){
+        it('should be able to send/receive rpc calls', function(){
+        
+                //start test server
+                var child=ChildProcess.exec('./test/2-rpc-server.js');
 
-        wss.on('connection', function(ws) {
+                //arrange for a client
+                var ioSocket = require('engine.io-client')('ws://localhost:8082');
+                var RpcSocket=require('rpc-websocket');
+                var ws=new RpcSocket(ioSocket);
 
-                ws.on('test-type1', function(message,reply) {
-                        reply('TEST-BACK-1-'+message);
-                });
+                //count messages
+                var arrivedCount=0;
+                var MESSAGES_PER_TYPE=5;
+                var MAX_MESSAGES=3*MESSAGES_PER_TYPE;
 
-                ws.on('test-type2', function(message,reply) {
-                        reply('TEST-BACK-2'+message);
-                });
+                function attemptToTerminate() {
+                        arrivedCount++;
+                        if(arrivedCount===MAX_MESSAGES) 
+                                child.kill('SIGKILL');
+                }
 
-                ws.on('test-type3', function(message,reply) {
-                        reply('TEST-BACK-3'+message);
+                //client sending/receiving
+                ws.on('open', function() {
+                        for(var i=0; i<MESSAGES_PER_TYPE; i++) {
+
+                                (function(i) {
+                                        ws.rpc('test-type1',i,function(message){
+                                                assert.equal(message,'TEST-BACK-1-'+i);
+                                                attemptToTerminate();                                        
+                                        });
+
+                                        ws.rpc('test-type2',i,function(message){
+                                                assert.equal(message,'TEST-BACK-2-'+i);
+                                                attemptToTerminate();                                        
+                                        });
+
+                                        ws.rpc('test-type3',i,function(message){
+                                                assert.equal(message,'TEST-BACK-3-'+i);
+                                                attemptToTerminate();                                        
+                                        });
+                                })(i);
+
+                        }
+
                 });
 
         });
 
 });
+
 ```
 
 While the program is executing the reply logic, the value of the loop's counter `i` is not what you may think it is. Since the `reply` logic gets executed asynchronously, your socket could be waiting for a while before getting a response. In the meanwhile your loop counter will have moved on.
