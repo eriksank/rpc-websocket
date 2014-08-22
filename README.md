@@ -329,6 +329,7 @@ What a nightmare!
 
 !DONTINCLUDE "doc/api/rpc-socket.md"
 
+
 _On hold until the issues have been resolved._
 
 <a name="server"></a>
@@ -336,6 +337,7 @@ _On hold until the issues have been resolved._
 ### 6.2\. Server
 
 !DONTINCLUDE "doc/api/rpc-server.md"
+
 
 _On hold until the issues have been resolved._
 
