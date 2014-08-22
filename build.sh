@@ -17,7 +17,7 @@ jsdoc2md lib/rpc-server.js > doc/api/rpc-server.md
 
 ## create first draft of README.md
 
-for f in $(ls doc/readme); do
+for f in $(ls doc/readme/*.md); do
         cat doc/readme/$f >> README.draft.1.md
 done
 
