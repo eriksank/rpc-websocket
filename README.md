@@ -334,7 +334,7 @@ Execute the `build.sh` script to re-build the project from sources.
 <a name="whatiswrongwithajax?"></a>
 
 ### 8.1\. What is wrong with ajax?
-With half of the internet nowadays hanging together through ajax, it is easy to forget that ajax is just a hack in which we reuse the http protocol to do something that it wasn't designed to do. It is not particularly suitable as an RPC mechanism, but since ajax is all we had until recently, that is indeed what we used to build half of the existing internet.
+With nowadays half of the internet hanging together with ajax, it is easy to forget that ajax is just a hack in which we reuse the http protocol to do something that it wasn't designed for. Ajax is not particularly suitable as an RPC mechanism. But then again, since ajax was the only RPC-like mechanism that the browsers supported until recently, ajax is indeed what we have used to build half of the existing internet.
 
 <a name="whatiswrongwithjson-rpc?"></a>
 
