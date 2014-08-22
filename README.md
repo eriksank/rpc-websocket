@@ -12,12 +12,12 @@
 5.4\.  [Distributed computing](#distributedcomputing)  
 5.5\.  [Handling beforeSend/afterSend events](#handlingbeforesend/aftersendevents)  
 5.6\.  [Looping over RPC calls](#loopingoverrpccalls)  
-6\.  [Why RPC Socket?](#whyrpcsocket?)  
-6.1\.  [What is wrong with ajax?](#whatiswrongwithajax?)  
-6.2\.  [What is wrong with json-rpc?](#whatiswrongwithjson-rpc?)  
-6.3\.  [What is wrong with socket.io?](#whatiswrongwithsocket.io?)  
-7\.  [Development](#development)  
-8\.  [building](#building)  
+6\.  [Development](#development)  
+7\.  [building](#building)  
+8\.  [Why RPC Socket?](#whyrpcsocket?)  
+8.1\.  [What is wrong with ajax?](#whatiswrongwithajax?)  
+8.2\.  [What is wrong with json-rpc?](#whatiswrongwithjson-rpc?)  
+8.3\.  [What is wrong with socket.io?](#whatiswrongwithsocket.io?)  
 9\.  [Other publications](#otherpublications)  
 10\.  [Contact](#contact)  
 10.1\.  [Support](#support)  
@@ -311,38 +311,9 @@ while(condition) {
 ```
 When the enclosure function exits, the logic inside of the function will hang on to copies of __x1__, __x2__ inside its closure, with values as they were at the moment that the program executed the function and left the function. The technique to create such enclosure function is generally called an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression) (Immediately-invoked function expression).
 
-<a name="whyrpcsocket?"></a>
-
-##6\. Why RPC Socket?
-
-<a name="whatiswrongwithajax?"></a>
-
-### 6.1\. What is wrong with ajax?
-With half of the internet nowadays hanging together through ajax, it is easy to forget that ajax is just a hack in which we reuse the http protocol to do something that it wasn't designed to do. It is not particularly suitable as an RPC mechanism, but since ajax is all we had until recently, that is indeed what we used to build half of the existing internet.
-
-<a name="whatiswrongwithjson-rpc?"></a>
-
-### 6.2\. What is wrong with json-rpc?
-[json-rpc](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to formal schema.  At the same time, it tends to create an intricate bureaucratic procedure at a point at which most developers would rather be in prototyping mode. So, while prototyping the initial versions of an application, json-rpc gives us the impression: __Get out of my way, because now I am too busy for this, and I've got other things on my mind.__
-
-There would be nothing wrong with adding structural validation logic before sending a message, later on, but there are many ways to do that. One size will not fit all. Furthermore, in practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
-
-With RPC WebSocket, you can still send whatever you like as messages, just like with standard websockets. It is just a router module that facilitates delivering messages to the right handlers inside your program.
-
-<a name="whatiswrongwithsocket.io?"></a>
-
-### 6.3\. What is wrong with socket.io?
-Somewhere in the future, there will probably be nothing wrong with socket.io. Today, in August 2014, there were at some point [600+ outstanding, unresolved issues](https://github.com/Automattic/socket.io/issues). I personally also logged a trouble ticket for something that we can only call a bug, but I have not heard back from their __helpdesk__.
-
-Socket.io supports lots of features on top of websockets: such as support for __express__ and __koa__. They also implements numerous scenarios in which you can use websockets with __namespaces__ and in which you can join and leave __rooms__. I only needed the __custom events__ (=message types) and __acknowledgements__ (=rpc). I did not want or implement __namespaces__, because you can just prefix your message types with a namespace in order to create separate channels in one websocket. Life is already full enough of useless complications.
-
-I did not implement support for __express__ or __koa__ because you could as well run the websocket server on another port or in another virtual machine, if you are worried about firewalls. Mixing http with websocket traffic in one server process, looks like an excellent way to create an undebuggable monster.
-
-If you combine the socket.io features in unexpected ways, you may be in for a surprise. Just for the hell of it, I tried to use __namespaces__ combined with __acknowledgements__. The entire edifice came crashing down. My trouble ticket is still unanswered. By the way, I did not find any unit tests in the socket.io sources that test for such combination of features. By the way, there are many other scenarios possible for using websocket than the ones implemented today in socket.io. I wonder, are they going to keep adding these too? That could only end in a fully-fledged __disasterzilla__ ...
-
 <a name="development"></a>
 
-##7\. Development
+##6\. Development
 
 **Standard websockets:** [engine.io](https://github.com/Automattic/engine.io), [engine.io-client](https://github.com/Automattic/engine.io-client)
 **browser support:** [browserify](https://github.com/substack/node-browserify), [uglifyjs](https://github.com/mishoo/UglifyJS)
@@ -352,9 +323,38 @@ If you combine the socket.io features in unexpected ways, you may be in for a su
 
 <a name="building"></a>
 
-## 8\. building
+## 7\. building
 
 Execute the `build.sh` script to re-build the project from sources.
+
+<a name="whyrpcsocket?"></a>
+
+##8\. Why RPC Socket?
+
+<a name="whatiswrongwithajax?"></a>
+
+### 8.1\. What is wrong with ajax?
+With half of the internet nowadays hanging together through ajax, it is easy to forget that ajax is just a hack in which we reuse the http protocol to do something that it wasn't designed to do. It is not particularly suitable as an RPC mechanism, but since ajax is all we had until recently, that is indeed what we used to build half of the existing internet.
+
+<a name="whatiswrongwithjson-rpc?"></a>
+
+### 8.2\. What is wrong with json-rpc?
+[json-rpc](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to formal schema.  At the same time, it tends to create an intricate bureaucratic procedure at a point at which most developers would rather be in prototyping mode. So, while prototyping the initial versions of an application, json-rpc gives us the impression: __Get out of my way, because now I am too busy for this, and I've got other things on my mind.__
+
+There would be nothing wrong with adding structural validation logic before sending a message, later on, but there are many ways to do that. One size will not fit all. Furthermore, in practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
+
+With RPC WebSocket, you can still send whatever you like as messages, just like with standard websockets. It is just a router module that facilitates delivering messages to the right handlers inside your program.
+
+<a name="whatiswrongwithsocket.io?"></a>
+
+### 8.3\. What is wrong with socket.io?
+Somewhere in the future, there will probably be nothing wrong with socket.io. Today, in August 2014, there were at some point [600+ outstanding, unresolved issues](https://github.com/Automattic/socket.io/issues). I personally also logged a trouble ticket for something that we can only call a bug, but I have not heard back from their __helpdesk__.
+
+Socket.io supports lots of features on top of websockets: such as support for __express__ and __koa__. They also implements numerous scenarios in which you can use websockets with __namespaces__ and in which you can join and leave __rooms__. I only needed the __custom events__ (=message types) and __acknowledgements__ (=rpc). I did not want or implement __namespaces__, because you can just prefix your message types with a namespace in order to create separate channels in one websocket. Life is already full enough of useless complications.
+
+I did not implement support for __express__ or __koa__ because you could as well run the websocket server on another port or in another virtual machine, if you are worried about firewalls. Mixing http with websocket traffic in one server process, looks like an excellent way to create an undebuggable monster.
+
+If you combine the socket.io features in unexpected ways, you may be in for a surprise. Just for the hell of it, I tried to use __namespaces__ combined with __acknowledgements__. The entire edifice came crashing down. My trouble ticket is still unanswered. By the way, I did not find any unit tests in the socket.io sources that test for such combination of features. By the way, there are many other scenarios possible for using websocket than the ones implemented today in socket.io. I wonder, are they going to keep adding these too? That could only end in a fully-fledged __disasterzilla__ ...
 
 <a name="otherpublications"></a>
 
