@@ -1,3 +1,4 @@
+#[DRAFT VERSION / WORK IN PROGRESS]
 #RPC WebSocket
 
 1\.  [Synopsis](#synopsis)  
@@ -9,7 +10,7 @@
 5.2\.  [Sending/receiving typed messages](#sending/receivingtypedmessages)  
 5.3\.  [Making RPC calls](#makingrpccalls)  
 5.4\.  [Handling beforeSend/afterSend events](#handlingbeforesend/aftersendevents)  
-5.5\.  [Caveat: watch out for looping over rpc calls](#caveat:watchoutforloopingoverrpccalls)  
+5.5\.  [Looping over RPC calls](#loopingoverrpccalls)  
 6\.  [API](#api)  
 6.1\.  [Client](#client)  
 6.2\.  [Server](#server)  
@@ -29,7 +30,9 @@
 <a name="synopsis"></a>
 
 ##1\. Synopsis
-The RPC WebSocket nodejs module wraps standard websockets in order to add three features: message types, RPC, and before/afterSend events.
+RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events
+ 
+
 
 <a name="preamble"></a>
 
@@ -43,8 +46,23 @@ I have tested the module with sockets from [engine.io](https://github.com/Automa
 <a name="installation"></a>
 
 ##3\. Installation
+
+You can install rpc-websocket with npm:
+
 ```bash
 npm install rpc-websocket
+```
+
+You can use `engine.io` on the server side as the transport layer:
+
+```bash
+npm install engine.io
+```
+
+on the client side you can use `engine.io-client`:
+
+```bash
+npm install engine.io-client
 ```
 
 <a name="browsersupport"></a>
@@ -233,9 +251,9 @@ ws.on('afterSend',function(data) {
 });
 
 
-<a name="caveat:watchoutforloopingoverrpccalls"></a>
+<a name="loopingoverrpccalls"></a>
 
-### 5.5\. Caveat: watch out for looping over rpc calls
+### 5.5\. Looping over RPC calls
 
 You could easily run into very subtle bugs when you start looping over rpc calls. Example:
 
@@ -361,14 +379,14 @@ Execute the `build.sh` script to re-build the project from sources.
 <a name="support"></a>
 
 ###11.1\. Support
-For trouble tickets with RPC WebSocket, please, use the github issue list.
+For trouble tickets with RPC WebSocket, please, use the github [issue list](https://github.com/eriksank/rpc-websocket/issues).
 
 <a name="projects"></a>
 
 ###11.2\. Projects
 I am available for commercial projects.
 
-In commercial projects, I often do the initial prototyping by myself. After that, I manage external developer contributions through github and bitbucket. I usually end up being the long-term go-to person for how to evolve the system. My work involves reviewing Javascript for both the web and NodeJS. I occasionally still do PHP. The startups I work for, are usually located elsewhere but I do all of my work from Cambodia. If you are in need of a source code manager for your project, feel free to contact me at erik@sankuru.biz.
+In commercial projects, I often do the initial prototyping by myself. After that, I manage external developer contributions through github and bitbucket. I usually end up being the long-term go-to person for how to evolve the system. My work involves reviewing Javascript for both the web and nodejs. I occasionally still do PHP. The startups I work for, are usually located elsewhere, but I do all of my work from Cambodia. If you are in need of a source code manager for your project, feel free to contact me at erik@sankuru.biz.
 
 <a name="license"></a>
 
