@@ -1,42 +1,46 @@
 #[DRAFT VERSION / WORK IN PROGRESS]
 #RPC WebSocket
 
-1\.  [Synopsis](#synopsis)  
-2\.  [Preamble](#preamble)  
-3\.  [Installation](#installation)  
-4\.  [Browser support](#browsersupport)  
-5\.  [Examples](#examples)  
-5.1\.  [Running the examples](#runningtheexamples)  
-5.2\.  [Sending/receiving typed messages](#sending/receivingtypedmessages)  
-5.3\.  [Making RPC calls](#makingrpccalls)  
-5.4\.  [Handling beforeSend/afterSend events](#handlingbeforesend/aftersendevents)  
-5.5\.  [Looping over RPC calls](#loopingoverrpccalls)  
-6\.  [API](#api)  
-6.1\.  [Client](#client)  
-6.2\.  [Server](#server)  
-7\.  [Why RPC Socket?](#whyrpcsocket?)  
-7.1\.  [What is wrong with ajax?](#whatiswrongwithajax?)  
-7.2\.  [What is wrong with json-rpc?](#whatiswrongwithjson-rpc?)  
-7.3\.  [What is wrong with socket.io?](#whatiswrongwithsocket.io?)  
-8\.  [Development](#development)  
-9\.  [building](#building)  
-10\.  [Other publications](#otherpublications)  
-11\.  [Contact](#contact)  
-11.1\.  [Support](#support)  
-11.2\.  [Projects](#projects)  
-12\.  [License](#license)  
+0.1\.  [Synopsis](#synopsis)  
+0.2\.  [Preamble](#preamble)  
+0.3\.  [Installation](#installation)  
+0.4\.  [Browser support](#browsersupport)  
+0.5\.  [Examples](#examples)  
+0.5.1\.  [Running the examples](#runningtheexamples)  
+0.5.2\.  [Sending/receiving typed messages](#sending/receivingtypedmessages)  
+0.5.3\.  [Making RPC calls](#makingrpccalls)  
+0.5.4\.  [Distributed computing](#distributedcomputing)  
+0.5.5\.  [Handling beforeSend/afterSend events](#handlingbeforesend/aftersendevents)  
+0.5.6\.  [Looping over RPC calls](#loopingoverrpccalls)  
+0.6\.  [API](#api)  
+0.6.1\.  [Client](#client)  
+0.6.2\.  [Server](#server)  
+1\.  [rpc-websocket/RpcServer](#rpc-websocket/rpcserver)  
+1.1\.  [class: rpc-websocket/RpcServer~Wraps a websocket server object](#class:rpc-websocket/rpcserver~wrapsawebsocketserverobject)  
+1.1.1\.  [new rpc-websocket/RpcServer~Wraps a websocket server object(server)](#newrpc-websocket/rpcserver~wrapsawebsocketserverobjectserver)  
+1.2\.  [Why RPC Socket?](#whyrpcsocket?)  
+1.2.1\.  [What is wrong with ajax?](#whatiswrongwithajax?)  
+1.2.2\.  [What is wrong with json-rpc?](#whatiswrongwithjson-rpc?)  
+1.2.3\.  [What is wrong with socket.io?](#whatiswrongwithsocket.io?)  
+1.3\.  [Development](#development)  
+1.4\.  [building](#building)  
+1.5\.  [Other publications](#otherpublications)  
+1.6\.  [Contact](#contact)  
+1.6.1\.  [Support](#support)  
+1.6.2\.  [Projects](#projects)  
+1.7\.  [License](#license)  
 
 
 <a name="synopsis"></a>
 
-##1\. Synopsis
+##0.1\. Synopsis
 RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.
  
 
 
 <a name="preamble"></a>
 
-##2\. Preamble
+##0.2\. Preamble
 * *message types*: Each message is always assigned a type. This allows us to transparently route messages to different handler functions.
 * *RPC*: RPC stands Remote Procedure Call. this feature implements the ability to call functions on the server using websockets. It is an alternative to ajax and to JSON-RPC.
 * *before/after send events*: For the purposes of logging, encryption, and compression, we need the ability to intercept incoming and outgoing messages before they are delivered to their handler functions. Depending on the application, there may be other reasons to apply wholesale changes to each incoming or outgoing message. We could, for example, add validation logic before sending messages.
@@ -45,7 +49,7 @@ I have tested `rpc-sockets` with the [engine.io](https://github.com/Automattic/e
 
 <a name="installation"></a>
 
-##3\. Installation
+##0.3\. Installation
 
 You can install *rpc-websocket* with *npm*:
 
@@ -67,7 +71,7 @@ npm install engine.io-client
 
 <a name="browsersupport"></a>
 
-##4\. Browser support
+##0.4\. Browser support
 The module comes with a browserified version:
 
         browser-support/bundle.js
@@ -87,11 +91,11 @@ In order to support older browsers, you may want to use something like the `engi
 
 <a name="examples"></a>
 
-##5\. Examples
+##0.5\. Examples
 
 <a name="runningtheexamples"></a>
 
-### 5.1\. Running the examples
+### 0.5.1\. Running the examples
 
 Open two terminals. In order to run example 1, in one terminal, start the server:
 
@@ -108,9 +112,9 @@ node doc/examples/1-send-client.js
 
 <a name="sending/receivingtypedmessages"></a>
 
-### 5.2\. Sending/receiving typed messages
+### 0.5.2\. Sending/receiving typed messages
 
-The client:
+**The client:**
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
@@ -134,7 +138,7 @@ ws.on('test/mtype2', function(data) {
 
 ```
 
-The server:
+**The server:**
 
 ```javascript
 var engine = require('engine.io');
@@ -164,12 +168,13 @@ As you can see, you can just resort to a naming convention to create something l
 
 <a name="makingrpccalls"></a>
 
-### 5.3\. Making RPC calls
+### 0.5.3\. Making RPC calls
 
-You can let the client make RPC calls to the server, but also the other way around. The other way around is not possible with ajax. This endlessly complicates the construction of particular types of applications such as real-time chat boxes. Websockets are a solution for that.
+You can let the client make RPC calls to the server, but you can also let the server make RPC calls to the client. Server-to-client RPC calls are not possible with ajax. The fact that this is not possible, endlessly complicates the construction of particular types of applications such as real-time chat boxes.
 
-The client:
+**The client:**
 
+```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
 var RpcSocket=require('rpc-websocket');
 var ws=new RpcSocket(ioSocket);
@@ -183,9 +188,11 @@ ws.on('open', function() {
 
 });
 
+```
 
-The server:
+**The server:**
 
+```javascript
 var engine = require('engine.io');
 var server = engine.listen(8081);
 var RpcSocket=require('rpc-websocket');
@@ -202,36 +209,35 @@ wss.on('connection', function(ws) {
 
 });
 
+```
 
+<a name="distributedcomputing"></a>
 
-As you can see, this truly allows for distributed lambdas (=functions). If invoking a local function, looks like this:
+### 0.5.4\. Distributed computing
+
+As you can see, a functioning RPC mechanism truly allows for distributed lambdas (=functions). If invoking a local function, looks like this:
 
 ```javascript
 var y=f(x1,x2);
-
 /* do something with y */
 
 ```
 
-In that case, invoking a remote function, looks like that:
+In that case, as a remote function, it looks like that:
 
 ```javascript
-ws.rpc('f',[x1,x2],function(y) {
-
-        /* do something with y */
-
-});
-
+ws.rpc('f',[x1,x2],function(y) { /* do something with y */ });
 ```
-It would, of course, be possible to go the same route as _CORBA_ and generate the underlying code from an IDL. Nobody ever felt the urge to do that for ajax, though. Therefore, I suspect there is simply no demand for this type of IDL compilers and for hiding the code behind such IDL specification file that may not even look simpler in the first place.
+
+It would, of course, be possible to go the same route as _CORBA_ and generate such code from an _IDL_. However, nobody ever felt the urge to do that for ajax. Therefore, I suspect there is simply no demand for this type of IDL compilers or for hiding the code behind a specifications file that may not even look simpler.
 
 <a name="handlingbeforesend/aftersendevents"></a>
 
-### 5.4\. Handling beforeSend/afterSend events
+### 0.5.5\. Handling beforeSend/afterSend events
 
-You can use the `beforeSend` event to change something to the message about to be sent. You can `afterSend` event to, for example, do some logging, after successfully sending the message:
+You can use the `beforeSend` event to make changes to the message about to be sent. You can `afterSend` event to, for example, do some logging, after successfully sending the message:
 
-
+```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
 var RpcSocket=require('rpc-websocket');
 var ws=new RpcSocket(ioSocket);
@@ -254,13 +260,15 @@ ws.on('afterSend',function(data) {
         console.log('after sending:'+JSON.stringify(data));
 });
 
+```
 
 <a name="loopingoverrpccalls"></a>
 
-### 5.5\. Looping over RPC calls
+### 0.5.6\. Looping over RPC calls
 
-You could easily run into very subtle bugs when you start looping over rpc calls. Example:
+You could easily run into very subtle bugs when you start looping over RPC calls. For example:
 
+```javascript
 //arrange for a server
 
 describe.skip('rpc', function(){
@@ -287,8 +295,9 @@ describe.skip('rpc', function(){
         });
 
 });
+```
 
-While the program is executing the reply logic, the value of the loop's counter `i` is not what may think it is. The reply logic gets executed asynchronously. Your socket could be waiting for a while before getting a response. In the meanwhile your loop's counter will have moved on.
+While the program is executing the reply logic, the value of the loop's counter `i` is not what you may think it is. Since the `reply` logic gets executed asynchronously, your socket could be waiting for a while before getting a response. In the meanwhile your loop counter will have moved on.
 
 If you loop over an RPC call, you can generally not count of the fact that the variables that went into the request, are still the same as when you started the RPC call. Therefore, you must make sure to permanently fix their values in an enclosure:
 
@@ -306,36 +315,58 @@ while(condition) {
         });
 }
 ```
-When the enclosure function exits, the logic inside of the function will hang on to copies of __x1__, __x2__ inside its closure, with values as they were at the moment that the program executed the function and left the function. The technique to create such enclosure function is generally called [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression) (Immediately-invoked function expression).
+When the enclosure function exits, the logic inside of the function will hang on to copies of __x1__, __x2__ inside its closure, with values as they were at the moment that the program executed the function and left the function. The technique to create such enclosure function is generally called an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression) (Immediately-invoked function expression).
 
 <a name="api"></a>
 
-##6\. API
+##0.6\. API
 
 <a name="client"></a>
 
-### 6.1\. Client
+### 0.6.1\. Client
 
-!INCLUDE doc/api/rpc-client.md
 
 <a name="server"></a>
 
-### 6.2\. Server
+### 0.6.2\. Server
 
-!INCLUDE doc/api/rpc-server.md
+<a name="module_rpc-websocket/RpcServer"></a>
+<a name="rpc-websocket/rpcserver"></a>
+
+#1\. rpc-websocket/RpcServer
+Module to wrap you websocket server object in order to give it RPC capabilities.
+
+<a name="module_rpc-websocket/RpcServer..Wraps a websocket server object"></a>
+<a name="class:rpc-websocket/rpcserver~wrapsawebsocketserverobject"></a>
+
+##1.1\. class: rpc-websocket/RpcServer~Wraps a websocket server object
+**Members**
+
+* [class: rpc-websocket/RpcServer~Wraps a websocket server object](#module_rpc-websocket/RpcServer..Wraps a websocket server object)
+  * [new rpc-websocket/RpcServer~Wraps a websocket server object(server)](#new_module_rpc-websocket/RpcServer..Wraps a websocket server object)
+
+<a name="new_module_rpc-websocket/RpcServer..Wraps a websocket server object"></a>
+<a name="newrpc-websocket/rpcserver~wrapsawebsocketserverobjectserver"></a>
+
+###1.1.1\. new rpc-websocket/RpcServer~Wraps a websocket server object(server)
+**Params**
+
+- server `object` - The server object to wrap  
+
+**Scope**: inner class of [rpc-websocket/RpcServer](#module_rpc-websocket/RpcServer)  
 
 <a name="whyrpcsocket?"></a>
 
-##7\. Why RPC Socket?
+##1.2\. Why RPC Socket?
 
 <a name="whatiswrongwithajax?"></a>
 
-### 7.1\. What is wrong with ajax?
+### 1.2.1\. What is wrong with ajax?
 With half of the internet nowadays hanging together through ajax, it is easy to forget that ajax is just a hack in which we reuse the http protocol to do something that it wasn't designed to do. It is not particularly suitable as an RPC mechanism, but since ajax is all we had until recently, that is indeed what we used to build half of the existing internet.
 
 <a name="whatiswrongwithjson-rpc?"></a>
 
-### 7.2\. What is wrong with json-rpc?
+### 1.2.2\. What is wrong with json-rpc?
 [json-rpc](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to formal schema.  At the same time, it tends to create an intricate bureaucratic procedure at a point at which most developers would rather be in prototyping mode. So, while prototyping the initial versions of an application, json-rpc gives us the impression: __Get out of my way, because now I am too busy for this, and I've got other things on my mind.__
 
 There would be nothing wrong with adding structural validation logic before sending a message, later on, but there are many ways to do that. One size will not fit all. Furthermore, in practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
@@ -344,7 +375,7 @@ With RPC WebSocket, you can still send whatever you like as messages, just like 
 
 <a name="whatiswrongwithsocket.io?"></a>
 
-### 7.3\. What is wrong with socket.io?
+### 1.2.3\. What is wrong with socket.io?
 Somewhere in the future, there will probably be nothing wrong with socket.io. Today, in August 2014, there were at some point [600+ outstanding, unresolved issues](https://github.com/Automattic/socket.io/issues). I personally also logged a trouble ticket for something that we can only call a bug, but I have not heard back from their __helpdesk__.
 
 Socket.io supports lots of features on top of websockets: such as support for __express__ and __koa__. They also implements numerous scenarios in which you can use websockets with __namespaces__ and in which you can join and leave __rooms__. I only needed the __custom events__ (=message types) and __acknowledgements__ (=rpc). I did not want or implement __namespaces__, because you can just prefix your message types with a namespace in order to create separate channels in one websocket. Life is already full enough of useless complications.
@@ -355,7 +386,7 @@ If you combine the socket.io features in unexpected ways, you may be in for a su
 
 <a name="development"></a>
 
-##8\. Development
+##1.3\. Development
 
 **Standard websockets:** [engine.io](https://github.com/Automattic/engine.io), [engine.io-client](https://github.com/Automattic/engine.io-client)
 **browser support:** [browserify](https://github.com/substack/node-browserify), [uglifyjs](https://github.com/mishoo/UglifyJS)
@@ -365,36 +396,36 @@ If you combine the socket.io features in unexpected ways, you may be in for a su
 
 <a name="building"></a>
 
-## 9\. building
+## 1.4\. building
 
 Execute the `build.sh` script to re-build the project from sources.
 
 <a name="otherpublications"></a>
 
-##10\. Other publications
+##1.5\. Other publications
 
 * At [github.com](https://github.com/eriksank)
 * At [www.npmjs.org](https://www.npmjs.org/~eriksank)
 
 <a name="contact"></a>
 
-## 11\. Contact
+## 1.6\. Contact
 
 <a name="support"></a>
 
-###11.1\. Support
+###1.6.1\. Support
 For trouble tickets with RPC WebSocket, please, use the github [issue list](https://github.com/eriksank/rpc-websocket/issues).
 
 <a name="projects"></a>
 
-###11.2\. Projects
+###1.6.2\. Projects
 I am available for commercial projects.
 
 In commercial projects, I often do the initial prototyping by myself. After that, I manage external developer contributions through github and bitbucket. I usually end up being the long-term go-to person for how to evolve the system. My work involves reviewing Javascript for both the web and nodejs. I occasionally still do PHP. The startups I work for, are usually located elsewhere, but I do all of my work from Cambodia. If you are in need of a source code manager for your project, feel free to contact me at erik@sankuru.biz.
 
 <a name="license"></a>
 
-##12\. License
+##1.7\. License
 
         RPC Websocket
         Written by Erik Poupaert, Cambodia
