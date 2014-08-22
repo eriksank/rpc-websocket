@@ -14,9 +14,9 @@
 5.6\.  [Looping over RPC calls](#loopingoverrpccalls)  
 6\.  [Development](#development)  
 7\.  [building](#building)  
-8\.  [Why RPC Socket?](#whyrpcsocket?)  
-8.1\.  [What is wrong with ajax?](#whatiswrongwithajax?)  
-8.2\.  [What is wrong with json-rpc?](#whatiswrongwithjson-rpc?)  
+8\.  [Why RPC Socket](#whyrpcsocket)  
+8.1\.  [What is wrong with ajax](#whatiswrongwithajax)  
+8.2\.  [What is wrong with JSON-RPC](#whatiswrongwithjson-rpc)  
 8.3\.  [What is wrong with socket.io?](#whatiswrongwithsocket.io?)  
 9\.  [Other publications](#otherpublications)  
 10\.  [Contact](#contact)  
@@ -327,19 +327,19 @@ When the enclosure function exits, the logic inside of the function will hang on
 
 Execute the `build.sh` script to re-build the project from sources.
 
-<a name="whyrpcsocket?"></a>
+<a name="whyrpcsocket"></a>
 
-##8\. Why RPC Socket?
+##8\. Why RPC Socket
 
-<a name="whatiswrongwithajax?"></a>
+<a name="whatiswrongwithajax"></a>
 
-### 8.1\. What is wrong with ajax?
+### 8.1\. What is wrong with ajax
 With nowadays half of the internet hanging together with ajax, it is easy to forget that ajax is just a hack in which we reuse the http protocol to do something that it wasn't designed for. Ajax is not particularly suitable as an RPC mechanism. But then again, since ajax was the only RPC-like mechanism that the browsers supported until recently, ajax is indeed what we have used to build half of the existing internet.
 
-<a name="whatiswrongwithjson-rpc?"></a>
+<a name="whatiswrongwithjson-rpc"></a>
 
-### 8.2\. What is wrong with json-rpc?
-[json-rpc](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to formal schema.  At the same time, it tends to create an intricate bureaucratic procedure at a point at which most developers would rather be in prototyping mode. So, while prototyping the initial versions of an application, json-rpc gives us the impression: __Get out of my way, because now I am too busy for this, and I've got other things on my mind.__
+### 8.2\. What is wrong with JSON-RPC
+[json-rpc](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to formal schema.  JSON-RPC adds an bureaucratic procedure at a point in time when most developers would rather remain in prototyping mode. The general impression seems to be: __Get out of my way, because I am too busy for this right now. I've got other things on my mind.__
 
 There would be nothing wrong with adding structural validation logic before sending a message, later on, but there are many ways to do that. One size will not fit all. Furthermore, in practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
 
