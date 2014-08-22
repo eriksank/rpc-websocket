@@ -1,4 +1,3 @@
-#[DRAFT VERSION / WORK IN PROGRESS]
 #RPC WebSocket
 
 1\.  [Synopsis](#synopsis)  
@@ -193,7 +192,7 @@ ws.on('open', function() {
 ```javascript
 var engine = require('engine.io');
 var server = engine.listen(8081);
-var RpcSocket=require('rpc-websocket');
+var RpcServer=require('rpc-websocket').server;
 var wss=new RpcServer(server);
 
 console.log('server started ...');
@@ -246,7 +245,6 @@ ws.on('open', function() {
 
 ws.on('test-type', function(data) {
         console.log(data);
-        ws.close();
 });
 
 ws.on('beforeSend',function(data) {
@@ -264,6 +262,7 @@ ws.on('beforeReceive',function(data) {
 
 ws.on('afterReceive',function(data) {
         console.log('after receiving:'+JSON.stringify(data));
+        ws.close();
 });
 
 ```

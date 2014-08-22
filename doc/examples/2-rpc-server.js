@@ -1,6 +1,6 @@
 var engine = require('engine.io');
 var server = engine.listen(8081);
-var RpcSocket=require('../../index.js');
+var RpcServer=require('../../index.js').server;
 var wss=new RpcServer(server);
 
 console.log('server started ...');

@@ -8,7 +8,6 @@ ws.on('open', function() {
 
 ws.on('test-type', function(data) {
         console.log(data);
-        ws.close();
 });
 
 ws.on('beforeSend',function(data) {
@@ -26,5 +25,6 @@ ws.on('beforeReceive',function(data) {
 
 ws.on('afterReceive',function(data) {
         console.log('after receiving:'+JSON.stringify(data));
+        ws.close();
 });
 
