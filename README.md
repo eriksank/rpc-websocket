@@ -97,7 +97,7 @@ Open two terminals. In order to run example 1, in one terminal, start the server
 cd myproject/node_modules/rpc-websocket
 node doc/examples/1-send-server.js
 ```
-In the other terminal, execute the client:
+In the other terminal, you can execute the client:
 
 ```bash
 cd myproject/node_modules/rpc-websocket
@@ -223,13 +223,13 @@ In that case, as a remote function, it looks like that:
 ws.rpc('f',[x1,x2],function(y) { /* do something with y */ });
 ```
 
-It would, of course, be possible to go the same route as _CORBA_ and generate such code from an _IDL_. However, nobody ever felt the urge to do that for ajax. Therefore, I suspect there is simply no demand for this type of IDL compilers or for hiding the code behind a specifications file that may not even look simpler.
+It would, of course, be possible to go the same route as _CORBA_ and generate this code from an _IDL_. However, nobody ever felt the urge to do that for ajax. Therefore, I suspect there is simply no demand for this type of IDL compilers, or for hiding the code behind a specifications file that may not even be simpler.
 
 <a name="handlingbeforesend/aftersendevents"></a>
 
 ### 5.5\. Handling beforeSend/afterSend events
 
-You can use the `beforeSend` event to make changes to the message about to be sent. You can `afterSend` event to, for example, do some logging, after successfully sending the message:
+You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message:
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
@@ -263,8 +263,6 @@ ws.on('afterSend',function(data) {
 You could easily run into very subtle bugs when you start looping over RPC calls. For example:
 
 ```javascript
-//arrange for a server
-
 describe.skip('rpc', function(){
 
         var engine = require('engine.io');

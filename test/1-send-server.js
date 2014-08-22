@@ -1,5 +1,3 @@
-//arrange for a server
-
 describe.skip('send', function(){
         var engine = require('engine.io');
         var server = engine.listen(8081);

@@ -1,5 +1,3 @@
-//arrange for a server
-
 describe.skip('rpc', function(){
 
         var engine = require('engine.io');
