@@ -1,7 +1,25 @@
 {
-        "name" : "websocket-nacl",
-        "description" : "websockets encrypted with nacl",
+        "name" : "rpc-websocket",
+        "version": 0.4,
+        "description" : "RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.",
         "author" : "Erik Poupaert <erik@sankuru.biz>",
+        "main" : "index.js",
+         "repository": {
+          "type": "git",
+          "url": "git@github.com:eriksank/rpc-websocket.git"
+        },
+          "bugs": {
+          "url": "https://github.com/eriksank/rpc-websocket/issues"
+        },
+          "keywords": [
+          "websocket",
+          "rpc",
+          "message types",
+          "beforeSend",
+          "afterSend",
+          "beforeReceive",
+          "afterReceive"
+        ],
         "dependencies" :
         { 
                 "underscore" : "jashkenas/underscore",
@@ -12,6 +30,6 @@
                 "engine.io" : "Automattic/engine.io",
                 "engine.io-client": "Automattic/engine.io-client"
         },
-        "version" : "0.0.1"
+        "license": "LGPL"
 }
 
