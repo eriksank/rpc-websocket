@@ -37,29 +37,29 @@ RPC WebSocket is a wrapper for standard websockets that adds support for message
 <a name="preamble"></a>
 
 ##2\. Preamble
-* **message types**: Each message is always assigned a type. This allows us to transparently route messages to different handler functions.
-* **RPC**: RPC stands Remote Procedure Call. this feature implements the ability to call functions on the server using websockets. It is an alternative to ajax and to JSON-RPC.
-* **before/after send events**: For the purposes of logging, encryption, and compression, we need the ability to intercept incoming and outgoing messages before they are delivered to their handler functions. Depending on the application, there may be other reasons to apply wholesale changes to each incoming or outgoing message. We could, for example, add validation logic before sending messages.
+* *message types*: Each message is always assigned a type. This allows us to transparently route messages to different handler functions.
+* *RPC*: RPC stands Remote Procedure Call. this feature implements the ability to call functions on the server using websockets. It is an alternative to ajax and to JSON-RPC.
+* *before/after send events*: For the purposes of logging, encryption, and compression, we need the ability to intercept incoming and outgoing messages before they are delivered to their handler functions. Depending on the application, there may be other reasons to apply wholesale changes to each incoming or outgoing message. We could, for example, add validation logic before sending messages.
 
-I have tested **rpc-sockets** with the [engine.io](https://github.com/Automattic/engine.io) and [engine.io-client](https://github.com/Automattic/engine.io-client) transport mechanisms, but you should most likely be able to use alternative websocket implementations.
+I have tested `rpc-sockets` with the [engine.io](https://github.com/Automattic/engine.io) and [engine.io-client](https://github.com/Automattic/engine.io-client) transport mechanisms, but you should most likely be able to use alternative websocket implementations.
 
 <a name="installation"></a>
 
 ##3\. Installation
 
-You can install rpc-websocket with npm:
+You can install *rpc-websocket* with *npm*:
 
 ```bash
 npm install rpc-websocket
 ```
 
-You can use `engine.io` on the server side as the transport layer:
+If you want to use *engine.io* on the server side as the transport layer, you can install it with *npm*:
 
 ```bash
 npm install engine.io
 ```
 
-on the client side you can use `engine.io-client`:
+On the client side you can use *engine.io-client*:
 
 ```bash
 npm install engine.io-client
@@ -93,17 +93,17 @@ In order to support older browsers, you may want to use something like the `engi
 
 ### 5.1\. Running the examples
 
-Open two terminals. In one terminal, start the server:
+Open two terminals. In order to run example 1, in one terminal, start the server:
 
 ```bash
-        $ cd myproject/node_modules/rpc-websocket
-        $ node doc/examples/1-send-server.js
+cd myproject/node_modules/rpc-websocket
+node doc/examples/1-send-server.js
 ```
 In the other terminal, execute the client:
 
 ```bash
-        $ cd myproject/node_modules/rpc-websocket
-        $ node doc/examples/1-send-client.js
+cd myproject/node_modules/rpc-websocket
+node doc/examples/1-send-client.js
 ```
 
 <a name="sending/receivingtypedmessages"></a>
@@ -112,6 +112,7 @@ In the other terminal, execute the client:
 
 The client:
 
+```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
 var RpcSocket=require('rpc-websocket');
 var ws=new RpcSocket(ioSocket);
@@ -131,9 +132,11 @@ ws.on('test/mtype2', function(data) {
         ws.close();
 });
 
+```
 
 The server:
 
+```javascript
 var engine = require('engine.io');
 var server = engine.listen(8081);
 var RpcServer=require('rpc-websocket').server;
@@ -155,8 +158,9 @@ wss.on('connection', function(ws) {
 
 });
 
+```javascript
 
-As you can see, you can just resort to a naming convention to create something like a __test__ channel.
+As you can see, you can just resort to a naming convention to create something like a _test_ channel or namespace.
 
 <a name="makingrpccalls"></a>
 
