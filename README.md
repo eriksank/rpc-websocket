@@ -396,7 +396,7 @@ With nowadays half of the internet hanging together with ajax, it is easy to for
 <a name="whatiswrongwithjson-rpc"></a>
 
 ### 11.2\. What is wrong with JSON-RPC
-[JSON-RPC](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to a formal schema.  JSON-RPC adds an bureaucratic procedure at a point in time when most developers would rather remain in prototyping mode. It causes the following reaction: _Get out of my way, because I am too busy for this right now. I've got other things on my mind._
+[JSON-RPC](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to a formal schema.  JSON-RPC adds a bureaucratic procedure at a point in time when most developers would rather remain in prototyping mode. It causes the following reaction: _Get out of my way, because I am too busy for this right now. I've got other things on my mind._
 
 There would be nothing wrong with adding structural validation logic before sending a message, but that is rather something for later on in the project. Furthermore, there are many ways to do that. One size will not fit all. In practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
 
@@ -407,7 +407,7 @@ With *RPC WebSocket*, you can still send whatever you like, just like with stand
 ### 11.3\. What is wrong with socket.io
 Somewhere in the future, there will probably be nothing wrong with _socket.io_. Today, August 2014, there were at some point 600+ outstanding, [unresolved issues](https://github.com/Automattic/socket.io/issues). I personally also logged a trouble ticket for something that we can only call a bug, but I have not heard back from their _helpdesk_.
 
-_Socket.io_ supports lots of features on top of websockets, such as support for _express_ and _koa_. They also implements numerous scenarios in which you can use websockets with _namespaces_. You can even join and leave _rooms_. I only needed the _custom events_ (=message types) and _acknowledgements_ (=rpc). In _RPC Socket_ I did not want and did not implement _namespaces_, because you can just prefix your message types with a namespaces in order to create separate channels in one websocket.
+_Socket.io_ supports lots of features on top of websockets, such as support for _express_ and _koa_. They also implements numerous scenarios in which you can use websockets with _namespaces_. You can even join and leave _rooms_. I only needed the _custom events_ (=message types) and _acknowledgements_ (=rpc). In _RPC Socket_ I did not want and did not implement _namespaces_, because you can just prefix your message types with a namespace in order to create separate channels in one websocket.
 
 In *RPC Socket* I did not implement support for _express_ or _koa_. You could as well run the websocket server on another port, or even in another virtual machine, if you are worried about firewalls. Mixing http traffic with websockets in one server process, looks like an excellent way to create an undebuggable monster.
 
