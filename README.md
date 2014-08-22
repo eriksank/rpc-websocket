@@ -313,10 +313,10 @@ When the enclosure function exits, the logic inside of the function will hang on
 
 ##6\. Development tools
 
-* _Standard websockets:_ [engine.io](https://github.com/Automattic/engine.io), [engine.io-client](https://github.com/Automattic/engine.io-client)
-* _browser support:_ [browserify](https://github.com/substack/node-browserify), [uglifyjs](https://github.com/mishoo/UglifyJS)
-* _Unit tests_: [mocha](https://github.com/visionmedia/mocha)
-* _Documentation_: [jsdoc2md](https://github.com/75lb/jsdoc-to-markdown), [markdown-pp.py](https://github.com/jreese/markdown-pp)
+* Standard websockets: [engine.io](https://github.com/Automattic/engine.io), [engine.io-client](https://github.com/Automattic/engine.io-client)
+* browser support: [browserify](https://github.com/substack/node-browserify), [uglifyjs](https://github.com/mishoo/UglifyJS)
+* Unit tests: [mocha](https://github.com/visionmedia/mocha)
+* Documentation: [jsdoc2md](https://github.com/75lb/jsdoc-to-markdown), [markdown-pp.py](https://github.com/jreese/markdown-pp)
 
 <a name="building"></a>
 
