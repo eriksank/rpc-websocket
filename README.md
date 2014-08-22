@@ -28,7 +28,7 @@
 <a name="synopsis"></a>
 
 ##1\. Synopsis
-*RPC WebSocket* is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.
+_RPC WebSocket_ is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.
  
 
 
