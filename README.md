@@ -10,7 +10,7 @@
 5.2\.  [Sending/receiving typed messages](#sending/receivingtypedmessages)  
 5.3\.  [Making RPC calls](#makingrpccalls)  
 5.4\.  [Distributed computing](#distributedcomputing)  
-5.5\.  [Handling beforeSend/afterSend events](#handlingbeforesend/aftersendevents)  
+5.5\.  [Handling before/after send/receive events](#handlingbefore/aftersend/receiveevents)  
 5.6\.  [Looping over RPC calls](#loopingoverrpccalls)  
 6\.  [API](#api)  
 6.1\.  [Socket](#socket)  
@@ -32,7 +32,7 @@
 <a name="synopsis"></a>
 
 ##1\. Synopsis
-_RPC WebSocket_ is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.
+_RPC WebSocket_ is a wrapper for standard websockets that adds support for message types, RPC, and for before/after send/receive events.
  
 
 
@@ -229,11 +229,11 @@ ws.rpc('f',[x1,x2],function(y) { /* do something with y */ });
 
 It would, of course, be possible to go the same route as _CORBA_ and generate this code from an _IDL_. However, nobody ever felt the urge to do that for ajax. Therefore, I suspect there is simply no demand for this type of IDL compilers, or for hiding the code behind a specifications file that may not even be simpler.
 
-<a name="handlingbeforesend/aftersendevents"></a>
+<a name="handlingbefore/aftersend/receiveevents"></a>
 
-### 5.5\. Handling beforeSend/afterSend events
+### 5.5\. Handling before/after send/receive events
 
-You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message. An example:
+You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message. You can also use the `beforeReceive` and `afterReceive` events. Here an example:
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
