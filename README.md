@@ -158,7 +158,7 @@ wss.on('connection', function(ws) {
 
 });
 
-```javascript
+```
 
 As you can see, you can just resort to a naming convention to create something like a _test_ channel or namespace.
 
