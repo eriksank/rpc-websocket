@@ -30,7 +30,7 @@
 <a name="synopsis"></a>
 
 ##1\. Synopsis
-RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events
+RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and beforeSend/afterSend events.
  
 
 
@@ -38,10 +38,10 @@ RPC WebSocket is a wrapper for standard websockets that adds support for message
 
 ##2\. Preamble
 * **message types**: Each message is always assigned a type. This allows us to transparently route messages to different handler functions.
-* **RPC**: RPC stands Remote Procedure Call. this feature implements the ability to call functions on the server using websockets. It is an alternative to ajax and to json-rpc.
-* **before/after send events**: For the purposes of logging, encryption, compression, we need the ability to intercept incoming and outgoing messages before they are delivered to their handler functions. Depending on the application, there may be other reasons to apply wholesale changes to each incoming or outgoing message. We could, for example, add validation logic before sending messages.
+* **RPC**: RPC stands Remote Procedure Call. this feature implements the ability to call functions on the server using websockets. It is an alternative to ajax and to JSON-RPC.
+* **before/after send events**: For the purposes of logging, encryption, and compression, we need the ability to intercept incoming and outgoing messages before they are delivered to their handler functions. Depending on the application, there may be other reasons to apply wholesale changes to each incoming or outgoing message. We could, for example, add validation logic before sending messages.
 
-I have tested the module with sockets from [engine.io](https://github.com/Automattic/engine.io) and [engine.io-client](https://github.com/Automattic/engine.io-client) but you should most likely be able to use alternative websocket implementations.
+I have tested **rpc-sockets** with the [engine.io](https://github.com/Automattic/engine.io) and [engine.io-client](https://github.com/Automattic/engine.io-client) transport mechanisms, but you should most likely be able to use alternative websocket implementations.
 
 <a name="installation"></a>
 
