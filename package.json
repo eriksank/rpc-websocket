@@ -1,0 +1,17 @@
+{
+        "name" : "websocket-nacl",
+        "description" : "websockets encrypted with nacl",
+        "author" : "Erik Poupaert <erik@sankuru.biz>",
+        "dependencies" :
+        { 
+                "underscore" : "jashkenas/underscore",
+                "par" : "pluma/par"
+        },
+        "devDependencies" :
+        {
+                "engine.io" : "Automattic/engine.io",
+                "engine.io-client": "Automattic/engine.io-client"
+        },
+        "version" : "0.0.1"
+}
+
