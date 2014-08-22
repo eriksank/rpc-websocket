@@ -420,7 +420,7 @@ If you combine the *socket.io* features in unexpected ways, you may be in for a 
 <a name="support"></a>
 
 ###12.1\. Support
-For trouble tickets with RPC WebSocket, please, use the github [issue list](https://github.com/eriksank/rpc-websocket/issues).
+For trouble tickets with _RPC WebSocket_, please, use the github [issue list](https://github.com/eriksank/rpc-websocket/issues).
 
 <a name="projects"></a>
 
