@@ -14,8 +14,11 @@ describe('send', function(){
 
                 //count messages
                 var sentCount=0;
+
                 var beforeSendCount=0;
                 var afterSendCount=0;
+                var beforeReceiveCount=0;
+                var afterReceiveCount=0;
 
                 var MESSAGES_PER_TYPE=50;
                 var MAX_MESSAGES=2*MESSAGES_PER_TYPE;
@@ -23,7 +26,7 @@ describe('send', function(){
                 //current message
                 var currentMessage="";
 
-                //client sending/receiving
+                //client sending
                 clientws.on('open', function() {
                         for(var i=0; i<MESSAGES_PER_TYPE; i++) {
                                 currentMessage='TEST-FORTH-1';
@@ -39,6 +42,19 @@ describe('send', function(){
 
                 });
 
+                //client receiving
+                clientws.on('beforeReceive', function(data) {
+                        //XXX still need to figure out how to compare this to the
+                        // total number of messages ...
+                        beforeReceiveCount++;
+                });
+
+                clientws.on('afterReceive', function(data) {
+                        //XXX still need to figure out how to compare this to the
+                        // total number of messages ...
+                        afterReceiveCount++;
+                });
+
                 //before/after send
                 clientws.on('beforeSend',function(data) {
                         assert.equal(currentMessage,data['data']);
@@ -49,8 +65,6 @@ describe('send', function(){
                         assert.equal(currentMessage,data['data']);
                         afterSendCount++;
                 });
-
-        
 
         });
 

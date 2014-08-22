@@ -20,3 +20,11 @@ ws.on('afterSend',function(data) {
         console.log('after sending:'+JSON.stringify(data));
 });
 
+ws.on('beforeReceive',function(data) {
+        console.log('before receiving:'+JSON.stringify(data));
+});
+
+ws.on('afterReceive',function(data) {
+        console.log('after receiving:'+JSON.stringify(data));
+});
+

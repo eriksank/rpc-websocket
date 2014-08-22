@@ -16,16 +16,17 @@
 6.1\.  [Socket](#socket)  
 6.2\.  [Server](#server)  
 7\.  [Development tools](#developmenttools)  
-8\.  [building](#building)  
-9\.  [Why RPC Socket](#whyrpcsocket)  
-9.1\.  [What is wrong with ajax](#whatiswrongwithajax)  
-9.2\.  [What is wrong with JSON-RPC](#whatiswrongwithjson-rpc)  
-9.3\.  [What is wrong with socket.io](#whatiswrongwithsocket.io)  
+8\.  [Building](#building)  
+9\.  [Testing](#testing)  
 10\.  [Other publications](#otherpublications)  
-11\.  [Contact](#contact)  
-11.1\.  [Support](#support)  
-11.2\.  [Projects](#projects)  
-12\.  [License](#license)  
+11\.  [Why RPC Socket](#whyrpcsocket)  
+11.1\.  [What is wrong with ajax](#whatiswrongwithajax)  
+11.2\.  [What is wrong with JSON-RPC](#whatiswrongwithjson-rpc)  
+11.3\.  [What is wrong with socket.io](#whatiswrongwithsocket.io)  
+12\.  [Contact](#contact)  
+12.1\.  [Support](#support)  
+12.2\.  [Projects](#projects)  
+13\.  [License](#license)  
 
 
 <a name="synopsis"></a>
@@ -257,6 +258,14 @@ ws.on('afterSend',function(data) {
         console.log('after sending:'+JSON.stringify(data));
 });
 
+ws.on('beforeReceive',function(data) {
+        console.log('before receiving:'+JSON.stringify(data));
+});
+
+ws.on('afterReceive',function(data) {
+        console.log('after receiving:'+JSON.stringify(data));
+});
+
 ```
 
 <a name="loopingoverrpccalls"></a>
@@ -352,38 +361,22 @@ _On hold until the outstanding issues have been resolved._
 
 <a name="building"></a>
 
-## 8\. building
+## 8\. Building
 
 Execute the `build.sh` script to re-build the project from sources.
 
-<a name="whyrpcsocket"></a>
+<a name="testing"></a>
 
-##9\. Why RPC Socket
+## 9\. Testing
 
-<a name="whatiswrongwithajax"></a>
+Open a terminal and use _mocha_ to run the unit tests:
 
-### 9.1\. What is wrong with ajax
-With nowadays half of the internet hanging together with ajax, it is easy to forget that ajax is just a hack in which we reuse the _http_ protocol to do something that it was not designed for. Ajax is not particularly suitable as an RPC mechanism. But then again, since ajax was the only RPC-like mechanism that browsers until recently supported, ajax is indeed what we have used to build half of the existing internet.
+```bash
+cd node_modules/rpc-websocket
+mocha
+```
 
-<a name="whatiswrongwithjson-rpc"></a>
-
-### 9.2\. What is wrong with JSON-RPC
-[JSON-RPC](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to a formal schema.  JSON-RPC adds an bureaucratic procedure at a point in time when most developers would rather remain in prototyping mode. It causes the following reaction: _Get out of my way, because I am too busy for this right now. I've got other things on my mind._
-
-There would be nothing wrong with adding structural validation logic before sending a message, but that is rather something for later on in the project. Furthermore, there are many ways to do that. One size will not fit all. In practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
-
-With *RPC WebSocket*, you can still send whatever you like, just like with standard websockets. It is just a router module that facilitates the delivery of messages to the right handlers inside your program.
-
-<a name="whatiswrongwithsocket.io"></a>
-
-### 9.3\. What is wrong with socket.io
-Somewhere in the future, there will probably be nothing wrong with socket.io. Today, August 2014, there were at some point 600+ outstanding, [unresolved issues](https://github.com/Automattic/socket.io/issues). I personally also logged a trouble ticket for something that we can only call a bug, but I have not heard back from their _helpdesk_.
-
-Socket.io supports lots of features on top of websockets, such as support for _express_ and _koa_. They also implements numerous scenarios in which you can use websockets with _namespaces_. You can even join and leave _rooms_. I only needed the _custom events_ (=message types) and _acknowledgements_ (=rpc). In *RPC Socket* I did not want or implement _namespaces_, because you can just prefix your message types with a namespaces in order to create separate channels in one websocket.
-
-In *RPC Socket* I did not implement support for _express_ or _koa_. You could as well run the websocket server on another port, or even in another virtual machine, if you are worried about firewalls. Mixing http traffic with websockets in one server process, looks like an excellent way to create an undebuggable monster.
-
-If you combine the *socket.io* features in unexpected ways, you may be in for a surprise. Just for the hell of it, I tried to use _namespaces_ combined with _acknowledgements_. The entire edifice came crashing down and my trouble ticket is still unanswered. By the way, I did not find any unit tests in the *socket.io* sources that test for such combination of features. There are many other scenarios possible for using websockets than the ones implemented today in *socket.io*. I wonder. Are they going to keep adding every new scenario? That can only end in a fully-fledged _disasterzilla_ ...
+The unit tests work by starting the client who will in turn spawn a server process. The unit tests are mostly complete now.
 
 <a name="otherpublications"></a>
 
@@ -392,25 +385,54 @@ If you combine the *socket.io* features in unexpected ways, you may be in for a 
 * At [github.com](https://github.com/eriksank)
 * At [www.npmjs.org](https://www.npmjs.org/~eriksank)
 
+<a name="whyrpcsocket"></a>
+
+##11\. Why RPC Socket
+
+<a name="whatiswrongwithajax"></a>
+
+### 11.1\. What is wrong with ajax
+With nowadays half of the internet hanging together with ajax, it is easy to forget that ajax is just a hack in which we reuse the _http_ protocol to do something that it was not designed for. Ajax is not particularly suitable as an RPC mechanism. But then again, since ajax was the only RPC-like mechanism that browsers until recently supported, ajax is indeed what we have used to build half of the existing internet.
+
+<a name="whatiswrongwithjson-rpc"></a>
+
+### 11.2\. What is wrong with JSON-RPC
+[JSON-RPC](http://json-rpc.org/) has made the same mistake as SOAP and XML-RPC. JSON-RPC inspects the messages being sent and forces the developer to conform to a particular arrangement or even to a formal schema.  JSON-RPC adds an bureaucratic procedure at a point in time when most developers would rather remain in prototyping mode. It causes the following reaction: _Get out of my way, because I am too busy for this right now. I've got other things on my mind._
+
+There would be nothing wrong with adding structural validation logic before sending a message, but that is rather something for later on in the project. Furthermore, there are many ways to do that. One size will not fit all. In practice, as you can see from most REST APIs floating around on the web, most applications will simply not implement any formal validation schema system at all.
+
+With *RPC WebSocket*, you can still send whatever you like, just like with standard websockets. It is just a router module that facilitates the delivery of messages to the right handlers inside your program.
+
+<a name="whatiswrongwithsocket.io"></a>
+
+### 11.3\. What is wrong with socket.io
+Somewhere in the future, there will probably be nothing wrong with socket.io. Today, August 2014, there were at some point 600+ outstanding, [unresolved issues](https://github.com/Automattic/socket.io/issues). I personally also logged a trouble ticket for something that we can only call a bug, but I have not heard back from their _helpdesk_.
+
+Socket.io supports lots of features on top of websockets, such as support for _express_ and _koa_. They also implements numerous scenarios in which you can use websockets with _namespaces_. You can even join and leave _rooms_. I only needed the _custom events_ (=message types) and _acknowledgements_ (=rpc). In *RPC Socket* I did not want or implement _namespaces_, because you can just prefix your message types with a namespaces in order to create separate channels in one websocket.
+
+In *RPC Socket* I did not implement support for _express_ or _koa_. You could as well run the websocket server on another port, or even in another virtual machine, if you are worried about firewalls. Mixing http traffic with websockets in one server process, looks like an excellent way to create an undebuggable monster.
+
+If you combine the *socket.io* features in unexpected ways, you may be in for a surprise. Just for the hell of it, I tried to use _namespaces_ combined with _acknowledgements_. The entire edifice came crashing down and my trouble ticket is still unanswered. By the way, I did not find any unit tests in the *socket.io* sources that test for such combination of features. There are many other scenarios possible for using websockets than the ones implemented today in *socket.io*. I wonder. Are they going to keep adding every new scenario? That can only end in a fully-fledged _disasterzilla_ ...
+
 <a name="contact"></a>
 
-## 11\. Contact
+## 12\. Contact
 
 <a name="support"></a>
 
-###11.1\. Support
+###12.1\. Support
 For trouble tickets with RPC WebSocket, please, use the github [issue list](https://github.com/eriksank/rpc-websocket/issues).
 
 <a name="projects"></a>
 
-###11.2\. Projects
+###12.2\. Projects
 I am available for commercial projects.
 
 In commercial projects, I often do the initial prototyping by myself. After that, I manage external developer contributions through github and bitbucket. I usually end up being the long-term go-to person for how to evolve the system. My work involves reviewing Javascript for both the web and nodejs. I occasionally still do PHP. The startups I work for, are usually located elsewhere, but I do all of my work from Cambodia. If you are in need of a source code manager for your project, feel free to contact me at erik@sankuru.biz.
 
 <a name="license"></a>
 
-##12\. License
+##13\. License
 
         RPC Websocket
         Written by Erik Poupaert, Cambodia

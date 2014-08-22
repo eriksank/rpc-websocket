@@ -62,7 +62,7 @@ function RpcSocket(ws) {
 
                 data=JSON.parse(data);
 
-                this.emit("message",data);
+                this.emit("beforeReceive",data);
 
                 var userData=this.unWrapMessage(data);
 
@@ -97,6 +97,9 @@ function RpcSocket(ws) {
                 } else {
                         this.emit(event,userData);
                 }
+
+                this.emit("afterReceive",data);
+
         }).bind(this));
 
         this.emitError=(function(type,msg,desc) {
