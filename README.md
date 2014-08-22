@@ -229,7 +229,7 @@ It would, of course, be possible to go the same route as _CORBA_ and generate th
 
 ### 5.5\. Handling beforeSend/afterSend events
 
-You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message:
+You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message. An example:
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
@@ -307,7 +307,7 @@ while(condition) {
         });
 }
 ```
-When the enclosure function exits, the logic inside of the function will hang on to copies of __x1__, __x2__ inside its closure, with values as they were at the moment that the program executed the function and left the function. The technique to create such enclosure function is generally called an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression) (Immediately-invoked function expression).
+When the enclosure function exits, the logic inside of the function will hang on to copies of `x1`, and `x2` inside its function closure, with values as they were at the moment that the program finished executed the function. The technique to create such enclosure function is called [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression) (Immediately-invoked function expression).
 
 <a name="development"></a>
 
