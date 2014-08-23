@@ -2,15 +2,16 @@
 
 1\.  [Synopsis](#synopsis)  
 2\.  [Preamble](#preamble)  
+2.1\.  [The short story](#theshortstory)  
+2.2\.  [Definitions](#definitions)  
 3\.  [Installation](#installation)  
 4\.  [Browser support](#browsersupport)  
 5\.  [Examples](#examples)  
 5.1\.  [Running the examples](#runningtheexamples)  
 5.2\.  [Sending/receiving typed messages](#sending/receivingtypedmessages)  
 5.3\.  [Making RPC calls](#makingrpccalls)  
-5.4\.  [Distributed computing](#distributedcomputing)  
-5.5\.  [Handling before/after send/receive events](#handlingbefore/aftersend/receiveevents)  
-5.6\.  [Looping over RPC calls](#loopingoverrpccalls)  
+5.4\.  [Handling before/after send/receive events](#handlingbefore/aftersend/receiveevents)  
+5.5\.  [Looping over RPC calls](#loopingoverrpccalls)  
 6\.  [API](#api)  
 6.1\.  [Socket](#socket)  
 6.2\.  [Server](#server)  
@@ -38,9 +39,39 @@ _RPC WebSocket_ is a wrapper for standard websockets that adds support for messa
 <a name="preamble"></a>
 
 ##2\. Preamble
+
+<a name="theshortstory"></a>
+
+###2.1\. The short story
+
+Distributed computing allows for distributed lambdas (=functions). If invoking a local function, looks like this:
+
+```javascript
+var y=f(x1,x2);
+
+/* do something with y */
+
+```
+
+In that case, the same function invocation, as function doing the computation on a remote server, that is, a Remote Procedure Call (RPC) looks like that:
+
+```javascript
+ws.rpc('f',[x1,x2],function(y) {
+
+  /* do something with y */
+
+ });
+```
+
+_Rpc WebSocket_ allows you to write remote function calls over a websocket in this way.
+
+<a name="definitions"></a>
+
+###2.2\. Definitions
+
 * *message types*: Each message is always assigned a type. This allows us to transparently route messages to different handler functions.
-* *RPC*: RPC stands Remote Procedure Call. this feature implements the ability to call functions on the server using websockets. It is an alternative to ajax and to JSON-RPC.
-* *before/after send events*: For the purposes of logging, encryption, and compression, we need the ability to intercept incoming and outgoing messages before they are delivered to their handler functions. Depending on the application, there may be other reasons to apply wholesale changes to each incoming or outgoing message. We could, for example, add validation logic before sending messages.
+* *RPC*: This feature implements the ability to call functions on the server using websockets. It is an alternative to ajax and to JSON-RPC.
+* *before/after send/receive events*: For the purposes of logging, encryption, and compression, we need the ability to intercept incoming and outgoing messages before they are delivered to their handler functions. Depending on the application, there may be other reasons to apply wholesale changes to each incoming or outgoing message. We could, for example, add validation logic before sending messages.
 
 I have tested _Rpc WebSocket_ with the [engine.io](https://github.com/Automattic/engine.io) and [engine.io-client](https://github.com/Automattic/engine.io-client) transport mechanisms, but you should most likely be able to use alternative websocket implementations.
 
@@ -208,29 +239,9 @@ wss.on('connection', function(ws) {
 
 ```
 
-<a name="distributedcomputing"></a>
-
-### 5.4\. Distributed computing
-
-As you can see, a functioning RPC mechanism truly allows for distributed lambdas (=functions). If invoking a local function, looks like this:
-
-```javascript
-var y=f(x1,x2);
-/* do something with y */
-
-```
-
-In that case, as a remote function, it looks like that:
-
-```javascript
-ws.rpc('f',[x1,x2],function(y) { /* do something with y */ });
-```
-
-It would, of course, be possible to go the same route as _CORBA_ and generate this code from an _IDL_. However, nobody ever felt the urge to do that for ajax. Therefore, I suspect there is simply no demand for this type of IDL compilers, or for hiding the code behind a specifications file that may not even be simpler.
-
 <a name="handlingbefore/aftersend/receiveevents"></a>
 
-### 5.5\. Handling before/after send/receive events
+### 5.4\. Handling before/after send/receive events
 
 You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message. You can also use the `beforeReceive` and `afterReceive` events. Here an example:
 
@@ -269,7 +280,7 @@ ws.on('afterReceive',function(data) {
 
 <a name="loopingoverrpccalls"></a>
 
-### 5.6\. Looping over RPC calls
+### 5.5\. Looping over RPC calls
 
 You could easily run into very subtle bugs when you start looping over RPC calls. For example:
 
