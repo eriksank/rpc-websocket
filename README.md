@@ -63,7 +63,7 @@ ws.rpc('f',[x1,x2],function(y) {
  });
 ```
 
-_Rpc WebSocket_ allows you to write remote function calls over a websocket in this way.
+_Rpc WebSocket_ allows you to make remote function calls over a websocket.
 
 <a name="definitions"></a>
 
