@@ -15,5 +15,5 @@ mv package.json.draft package.json
 
 git tag -a "$version" -m "$version"
 git push origin --tags
-./npm publish
+npm publish
 
