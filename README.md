@@ -13,8 +13,8 @@
 5.4\.  [Handling before/after send/receive events](#handlingbefore/aftersend/receiveevents)  
 5.5\.  [Looping over RPC calls](#loopingoverrpccalls)  
 6\.  [Events supported](#eventssupported)  
-6.1\.  [server](#server)  
-6.2\.  [socket](#socket)  
+6.1\.  [Server](#server)  
+6.2\.  [Socket](#socket)  
 7\.  [API](#api)  
 7.1\.  [Socket](#socket-1)  
 7.2\.  [Server](#server-1)  
@@ -370,12 +370,13 @@ When the enclosure function exits, the logic inside of the function will hang on
 
 <a name="server"></a>
 
-###6.1\. server
+###6.1\. Server
+
 * `connection`: no arguments
 
 <a name="socket"></a>
 
-###6.2\. socket
+###6.2\. Socket
 
 By bubbling the events from the standard websocket transport layer:
 
