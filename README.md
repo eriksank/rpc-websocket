@@ -371,7 +371,7 @@ When the enclosure function exits, the logic inside of the function will hang on
 <a name="server"></a>
 
 ###6.1\. server
-*`connection`: no arguments
+* `connection`: no arguments
 
 <a name="socket"></a>
 
@@ -379,9 +379,9 @@ When the enclosure function exits, the logic inside of the function will hang on
 
 By bubbling the events from the standard websocket transport layer:
 
-*`open`: no arguments
-*`close`: no arguments
-*`error`: injects a standard javascript error object with `message`, `type`, and `description` fields 
+* `open`: no arguments
+* `close`: no arguments
+* `error`: injects a standard javascript error object with `message`, `type`, and `description` fields 
 
 _Rpc Socket_ events:
 
