@@ -1,6 +1,6 @@
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
-var NaclSocket=require('../../index.js');
-var ws=new NaClSocket(ioSocket);
+var RpcSocket=require('../../index.js');
+var ws=new RpcSocket(ioSocket);
 
 ws.on('open', function() {
     ws.send('test/mtype1','something');

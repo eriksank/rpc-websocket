@@ -149,8 +149,8 @@ node doc/examples/1-send-client.js
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
-var NaclSocket=require('rpc-websocket');
-var ws=new NaClSocket(ioSocket);
+var RpcSocket=require('rpc-websocket');
+var ws=new RpcSocket(ioSocket);
 
 ws.on('open', function() {
     ws.send('test/mtype1','something');

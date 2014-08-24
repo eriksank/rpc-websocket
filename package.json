@@ -19,7 +19,8 @@
         "dependencies" :
         { 
                 "underscore" : "jashkenas/underscore",
-                "par" : "pluma/par"
+                "par" : "pluma/par",
+                "EventEmitter2" : "asyncly/EventEmitter2"
         },
         "devDependencies" :
         {
