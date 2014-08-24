@@ -12,7 +12,6 @@
  */
 
 var EventEmitter = require('eventemitter2').EventEmitter2;
-//var EventEmitter = require('events').EventEmitter;
 var _=require("underscore");
 var par = require('par');
 
