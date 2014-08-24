@@ -7,7 +7,7 @@ fi
 
 version="$1"
 
-echo "$1" > "VERSION.$1"
+echo "$1" > "LAST-VERSION_$1"
 cat package.json | sed 's/"version": "\(.*\)"/"version": "'$1'"/' > package.json.draft
 rm -f package.json
 mv package.json.draft package.json
