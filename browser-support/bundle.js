@@ -21,7 +21,7 @@ var par = require('par');
  */
 function RpcSocket(ws) {
 
-        this.ws=ws;
+        this.webSocket=ws;
         this.currentMsgid=1;
 
         this.events=['open','close','error',
@@ -113,7 +113,7 @@ function RpcSocket(ws) {
 
         this.basicSend=(function(data) {
                 this.emit('beforeSend',data);
-                this.ws.send(JSON.stringify(data));
+                this.webSocket.send(JSON.stringify(data));
                 this.emit('afterSend',data);
         }).bind(this);
 }
@@ -153,7 +153,7 @@ RpcSocket.prototype.rpc=function(messageType,userData,replyHandler) {
  */
 RpcSocket.prototype.close=function() {
         this.removeAllListeners();
-        this.ws.close();
+        this.webSocket.close();
 }
 
 module.exports=RpcSocket;
