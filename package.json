@@ -26,6 +26,7 @@
                 "engine.io" : "Automattic/engine.io",
                 "engine.io-client": "Automattic/engine.io-client"
         },
+        "readmeFilename": "README.md",
         "license": "LGPL"
 }
 
