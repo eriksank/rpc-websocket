@@ -111,11 +111,11 @@ npm install engine.io-client
 ##4\. Browser support
 The module comes with a _browserified_ version:
 
-        browser-support/bundle.js
+        browser-support/rpc-websocket-bundle.js
 
 And a minimized version thereof:
 
-        browser-support/bundle.min.js
+        browser-support/rpc-websocket-bundle.min.js
 
 You can use _RPC WebSocket_ directly in the browser like this:
 

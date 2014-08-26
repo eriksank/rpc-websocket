@@ -7,8 +7,8 @@
 
 ## add web support
 
-browserify lib/rpc-socket.js -o browser-support/bundle.js
-uglifyjs browser-support/bundle.js -o browser-support/bundle.min.js
+browserify lib/rpc-socket.js -o browser-support/rpc-websocket-bundle.js
+uglifyjs browser-support/rpc-websocket-bundle.js -o browser-support/rpc-websocket-bundle.min.js
 
 ## build API documentation
 
