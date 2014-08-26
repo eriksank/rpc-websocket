@@ -17,17 +17,17 @@
 6.2\.  [Socket](#socket)  
 7\.  [API](#api)  
 7.1\.  [Socket](#socket-1)  
-7.1.0.0.1\.  [RpcSocket(ws)](#rpcsocketws)  
-7.1.0.0.1.1\.  [Params:](#params:)  
-7.1.0.0.2\.  [send(MessageType, UserData)](#sendmessagetypeuserdata)  
-7.1.0.0.2.1\.  [Params:](#params:-1)  
-7.1.0.0.3\.  [rpc(MessageType, UserData, The)](#rpcmessagetypeuserdatathe)  
-7.1.0.0.3.1\.  [Params:](#params:-2)  
-7.1.0.0.4\.  [close()](#close)  
-7.2\.  [Server](#server-1)  
-7.2.0.0.1\.  [RpcServer(server)](#rpcserverserver)  
-7.2.0.0.1.1\.  [Params:](#params:-3)  
-7.2.0.0.2\.  [close()](#close-1)  
+7.2\.  [RpcSocket(ws)](#rpcsocketws)  
+7.2.1\.  [Params](#params)  
+7.3\.  [send(MessageType, UserData)](#sendmessagetypeuserdata)  
+7.3.1\.  [Params](#params-1)  
+7.4\.  [rpc(MessageType, UserData, The)](#rpcmessagetypeuserdatathe)  
+7.4.1\.  [Params](#params-2)  
+7.5\.  [close()](#close)  
+7.6\.  [Server](#server-1)  
+7.7\.  [RpcServer(server)](#rpcserverserver)  
+7.7.1\.  [Params](#params-3)  
+7.8\.  [close()](#close-1)  
 8\.  [Development tools](#developmenttools)  
 9\.  [Building](#building)  
 10\.  [Testing](#testing)  
@@ -422,36 +422,36 @@ A network-level message is an object with the following fields:
 
 <a name="rpcsocketws"></a>
 
-###### 7.1.0.0.1\. RpcSocket(ws)
+### 7.2\. RpcSocket(ws)
 
-<a name="params:"></a>
+<a name="params"></a>
 
-####### 7.1.0.0.1.1\. Params: 
+#### 7.2.1\. Params 
 
 * **object** *ws* The websocket object to wrap
 
 <a name="sendmessagetypeuserdata"></a>
 
-###### 7.1.0.0.2\. send(MessageType, UserData)
+### 7.3\. send(MessageType, UserData)
 
 Sends as message through the websocket
 
-<a name="params:-1"></a>
+<a name="params-1"></a>
 
-####### 7.1.0.0.2.1\. Params: 
+#### 7.3.1\. Params 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
 
 <a name="rpcmessagetypeuserdatathe"></a>
 
-###### 7.1.0.0.3\. rpc(MessageType, UserData, The)
+### 7.4\. rpc(MessageType, UserData, The)
 
 Makes an RPC call through the websocket
 
-<a name="params:-2"></a>
+<a name="params-2"></a>
 
-####### 7.1.0.0.3.1\. Params: 
+#### 7.4.1\. Params 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
@@ -459,7 +459,7 @@ Makes an RPC call through the websocket
 
 <a name="close"></a>
 
-###### 7.1.0.0.4\. close()
+### 7.5\. close()
 
 Closes the websocket
 
@@ -468,7 +468,7 @@ Closes the websocket
 
 <a name="server-1"></a>
 
-### 7.2\. Server
+### 7.6\. Server
 
 
 
@@ -476,17 +476,17 @@ Closes the websocket
 
 <a name="rpcserverserver"></a>
 
-###### 7.2.0.0.1\. RpcServer(server)
+### 7.7\. RpcServer(server)
 
-<a name="params:-3"></a>
+<a name="params-3"></a>
 
-####### 7.2.0.0.1.1\. Params: 
+#### 7.7.1\. Params 
 
 * **object** *server* The server object to wrap
 
 <a name="close-1"></a>
 
-###### 7.2.0.0.2\. close()
+### 7.8\. close()
 
 Closes the server object.
 

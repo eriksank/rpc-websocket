@@ -12,18 +12,26 @@ uglifyjs browser-support/bundle.js -o browser-support/bundle.min.js
 
 ## build API documentation
 
-markdox lib/rpc-socket.js -o doc/api/rpc-socket.draft.md
-markdox lib/rpc-server.js -o doc/api/rpc-server.draft.md
+markdox lib/rpc-socket.js -o doc/api/rpc-socket.draft.1.md
+markdox lib/rpc-server.js -o doc/api/rpc-server.draft.1.md
 
 ## fix the headings
 
-sed -e 's/## /#### /' -e 's/### /##### /' doc/api/rpc-socket.draft.md > \
+sed -e 's/^###[^#]/#### /' -e 's/Params:/Params/'  doc/api/rpc-socket.draft.1.md > \
+       doc/api/rpc-socket.draft.2.md
+sed -e 's/^##[^#]/### /'  doc/api/rpc-socket.draft.2.md > \
        doc/api/rpc-socket.md
-rm -f doc/api/rpc-socket.draft.md
 
-sed -e 's/## /#### /' -e 's/### /##### /' doc/api/rpc-server.draft.md > \
+rm -f doc/api/rpc-socket.draft.1.md
+rm -f doc/api/rpc-socket.draft.2.md
+
+sed -e 's/^###[^#]/#### /' -e 's/Params:/Params/' doc/api/rpc-server.draft.1.md > \
+       doc/api/rpc-server.draft.2.md
+sed -e 's/^##[^#]/### /' doc/api/rpc-server.draft.2.md > \
        doc/api/rpc-server.md
-rm -f doc/api/rpc-server.draft.md
+
+rm -f doc/api/rpc-server.draft.1.md
+rm -f doc/api/rpc-server.draft.2.md
 
 ## create first draft of README.md
 

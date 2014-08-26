@@ -2,13 +2,13 @@
 
 <!-- Start lib/rpc-server.js -->
 
-###### RpcServer(server)
+### RpcServer(server)
 
-####### Params: 
+#### Params 
 
 * **object** *server* The server object to wrap
 
-###### close()
+### close()
 
 Closes the server object.
 
