@@ -18,15 +18,12 @@
 7\.  [API](#api)  
 7.1\.  [Socket](#socket-1)  
 7.1.1\.  [RpcSocket(ws)](#rpcsocketws)  
-7.1.1.1\.  [Params](#params)  
 7.1.2\.  [send(MessageType, UserData)](#sendmessagetypeuserdata)  
-7.1.2.1\.  [Params](#params-1)  
 7.1.3\.  [rpc(MessageType, UserData, The)](#rpcmessagetypeuserdatathe)  
-7.1.3.1\.  [Params](#params-2)  
 7.1.4\.  [close()](#close)  
 7.2\.  [Server](#server-1)  
 7.2.1\.  [RpcServer(server)](#rpcserverserver)  
-7.2.1.1\.  [Params](#params-3)  
+7.2.1.1\.  [Params](#params)  
 7.2.2\.  [close()](#close-1)  
 8\.  [Development tools](#developmenttools)  
 9\.  [Building](#building)  
@@ -424,9 +421,7 @@ A network-level message is an object with the following fields:
 
 #### 7.1.1\. RpcSocket(ws)
 
-<a name="params"></a>
-
-##### 7.1.1.1\. Params 
+**Params** 
 
 * **object** *ws* The websocket object to wrap
 
@@ -436,9 +431,7 @@ A network-level message is an object with the following fields:
 
 Sends as message through the websocket
 
-<a name="params-1"></a>
-
-##### 7.1.2.1\. Params 
+**Params** 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
@@ -449,9 +442,7 @@ Sends as message through the websocket
 
 Makes an RPC call through the websocket
 
-<a name="params-2"></a>
-
-##### 7.1.3.1\. Params 
+**Params** 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
@@ -479,7 +470,7 @@ Closes the websocket
 
 #### 7.2.1\. RpcServer(server)
 
-<a name="params-3"></a>
+<a name="params"></a>
 
 ##### 7.2.1.1\. Params 
 

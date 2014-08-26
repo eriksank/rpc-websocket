@@ -17,7 +17,7 @@ markdox lib/rpc-server.js -o doc/api/rpc-server.draft.1.md
 
 ## fix the headings
 
-sed -e 's/^###[^#]/##### /' -e 's/Params:/Params/'  doc/api/rpc-socket.draft.1.md > \
+sed -e 's/^### Params:/**Params**/' doc/api/rpc-socket.draft.1.md > \
        doc/api/rpc-socket.draft.2.md
 sed -e 's/^##[^#]/#### /'  doc/api/rpc-socket.draft.2.md > \
        doc/api/rpc-socket.md

@@ -4,7 +4,7 @@
 
 #### RpcSocket(ws)
 
-##### Params 
+**Params** 
 
 * **object** *ws* The websocket object to wrap
 
@@ -12,7 +12,7 @@
 
 Sends as message through the websocket
 
-##### Params 
+**Params** 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
@@ -21,7 +21,7 @@ Sends as message through the websocket
 
 Makes an RPC call through the websocket
 
-##### Params 
+**Params** 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
