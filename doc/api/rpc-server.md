@@ -1,18 +1,25 @@
-<a name="module_rpc-websocket/RpcServer"></a>
-#rpc-websocket/RpcServer
+
+
+<!-- Start lib/rpc-server.js -->
+
+RPC Websocket
+        Written by Erik Poupaert, Cambodia
+        (c) 2014
+        Licensed under the LGPL
+
+## EventEmitter
+
 Module to wrap you websocket server object in order to give it RPC capabilities.
 
-<a name="module_rpc-websocket/RpcServer..Wraps a websocket server object"></a>
-##class: rpc-websocket/RpcServer~Wraps a websocket server object
-**Members**
+## RpcServer(server)
 
-* [class: rpc-websocket/RpcServer~Wraps a websocket server object](#module_rpc-websocket/RpcServer..Wraps a websocket server object)
-  * [new rpc-websocket/RpcServer~Wraps a websocket server object(server)](#new_module_rpc-websocket/RpcServer..Wraps a websocket server object)
+### Params: 
 
-<a name="new_module_rpc-websocket/RpcServer..Wraps a websocket server object"></a>
-###new rpc-websocket/RpcServer~Wraps a websocket server object(server)
-**Params**
+* **object** *server* The server object to wrap
 
-- server `object` - The server object to wrap  
+## close()
 
-**Scope**: inner class of [rpc-websocket/RpcServer](#module_rpc-websocket/RpcServer)  
+Closes the server object.
+
+<!-- End lib/rpc-server.js -->
+

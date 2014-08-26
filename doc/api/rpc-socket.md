@@ -1,18 +1,44 @@
-<a name="module_rpc-websocket/RpcSocket"></a>
-#rpc-websocket/RpcSocket
+
+
+<!-- Start lib/rpc-socket.js -->
+
+RPC Websocket
+        Written by Erik Poupaert, Cambodia
+        (c) 2014
+        Licensed under the LGPL
+
+## EventEmitter
+
 Module to wrap you websocket object in order to give it RPC capabilities.
 
-<a name="module_rpc-websocket/RpcSocket..Wraps a websocket object"></a>
-##class: rpc-websocket/RpcSocket~Wraps a websocket object
-**Members**
+## RpcSocket(ws)
 
-* [class: rpc-websocket/RpcSocket~Wraps a websocket object](#module_rpc-websocket/RpcSocket..Wraps a websocket object)
-  * [new rpc-websocket/RpcSocket~Wraps a websocket object(ws)](#new_module_rpc-websocket/RpcSocket..Wraps a websocket object)
+### Params: 
 
-<a name="new_module_rpc-websocket/RpcSocket..Wraps a websocket object"></a>
-###new rpc-websocket/RpcSocket~Wraps a websocket object(ws)
-**Params**
+* **object** *ws* The websocket object to wrap
 
-- ws `object` - The websocket object to wrap  
+## send(MessageType, UserData)
 
-**Scope**: inner class of [rpc-websocket/RpcSocket](#module_rpc-websocket/RpcSocket)  
+Sends as message through the websocket
+
+### Params: 
+
+* **string** *MessageType* The message's type
+* **any** *UserData* The data to send
+
+## rpc(MessageType, UserData, The)
+
+Makes an RPC call through the websocket
+
+### Params: 
+
+* **string** *MessageType* The message's type
+* **any** *UserData* The data to send
+* **function** *The* reply handler to call when the response arrives from the server
+
+## close()
+
+Closes the websocket
+
+<!-- End lib/rpc-socket.js -->
+

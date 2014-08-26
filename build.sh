@@ -12,8 +12,8 @@ uglifyjs browser-support/bundle.js -o browser-support/bundle.min.js
 
 ## build API documentation
 
-jsdoc2md lib/rpc-socket.js > doc/api/rpc-socket.md
-jsdoc2md lib/rpc-server.js > doc/api/rpc-server.md
+markdox lib/rpc-socket.js -o doc/api/rpc-socket.md
+markdox lib/rpc-server.js -o doc/api/rpc-server.md
 
 ## create first draft of README.md
 
