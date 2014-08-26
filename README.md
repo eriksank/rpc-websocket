@@ -23,7 +23,6 @@
 7.1.4\.  [close()](#close)  
 7.2\.  [Server](#server-1)  
 7.2.1\.  [RpcServer(server)](#rpcserverserver)  
-7.2.1.1\.  [Params](#params)  
 7.2.2\.  [close()](#close-1)  
 8\.  [Development tools](#developmenttools)  
 9\.  [Building](#building)  
@@ -423,7 +422,7 @@ A network-level message is an object with the following fields:
 
 Constructor. Wraps a websocket object
 
-**Params** 
+_Params_ 
 
 * **object** *ws* The websocket object to wrap
 
@@ -433,7 +432,7 @@ Constructor. Wraps a websocket object
 
 Sends as message through the websocket
 
-**Params** 
+_Params_ 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
@@ -444,7 +443,7 @@ Sends as message through the websocket
 
 Makes an RPC call through the websocket
 
-**Params** 
+_Params_ 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
@@ -474,9 +473,7 @@ Closes the websocket
 
 Constructor. Wraps a websocket server object
 
-<a name="params"></a>
-
-##### 7.2.1.1\. Params 
+_Params_ 
 
 * **object** *server* The server object to wrap
 

@@ -6,7 +6,7 @@
 
 Constructor. Wraps a websocket object
 
-**Params** 
+_Params_ 
 
 * **object** *ws* The websocket object to wrap
 
@@ -14,7 +14,7 @@ Constructor. Wraps a websocket object
 
 Sends as message through the websocket
 
-**Params** 
+_Params_ 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
@@ -23,7 +23,7 @@ Sends as message through the websocket
 
 Makes an RPC call through the websocket
 
-**Params** 
+_Params_ 
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send

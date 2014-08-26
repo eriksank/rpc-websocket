@@ -6,7 +6,7 @@
 
 Constructor. Wraps a websocket server object
 
-##### Params 
+_Params_ 
 
 * **object** *server* The server object to wrap
 
