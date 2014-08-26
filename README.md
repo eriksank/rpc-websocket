@@ -420,40 +420,40 @@ A network-level message is an object with the following fields:
 
 #### 7.1.1\. RpcSocket(ws)
 
-Constructor. Wraps a websocket object
+Constructor. Wraps a websocket object.
 
 _Params_ 
 
-* **object** *ws* The websocket object to wrap
+* **object** *ws* The websocket object to wrap.
 
 <a name="sendmessagetypeuserdata"></a>
 
 #### 7.1.2\. send(MessageType, UserData)
 
-Sends as message through the websocket
+Sends a message through a websocket.
 
 _Params_ 
 
-* **string** *MessageType* The message's type
-* **any** *UserData* The data to send
+* **string** *MessageType* The message's type.
+* **any** *UserData* The data to send.
 
 <a name="rpcmessagetypeuserdatareplyhandler"></a>
 
 #### 7.1.3\. rpc(MessageType, UserData, ReplyHandler)
 
-Makes an RPC call through the websocket
+Makes an RPC call through a websocket.
 
 _Params_ 
 
-* **string** *MessageType* The message's type
-* **any** *UserData* The data to send
-* **function** *ReplyHandler* The reply handler to call when the response arrives from the server
+* **string** *MessageType* The message's type (=function name).
+* **any** *UserData* The data to send.
+* **function** *ReplyHandler* The reply handler to call when the response arrives from the server.
 
 <a name="close"></a>
 
 #### 7.1.4\. close()
 
-Closes the websocket
+Closes the websocket.
 
 <!-- End lib/rpc-socket.js -->
 
@@ -471,11 +471,11 @@ Closes the websocket
 
 #### 7.2.1\. RpcServer(server)
 
-Constructor. Wraps a websocket server object
+Constructor. Wraps a websocket server object.
 
 _Params_ 
 
-* **object** *server* The server object to wrap
+* **object** *server* The server object to wrap.
 
 <a name="close-1"></a>
 

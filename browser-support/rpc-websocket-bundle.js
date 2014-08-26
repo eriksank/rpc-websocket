@@ -10,8 +10,8 @@ var _=require("underscore");
 var par = require('par');
 
 /**
- * Constructor. Wraps a websocket object
- * @param {object} ws The websocket object to wrap
+ * Constructor. Wraps a websocket object.
+ * @param {object} ws The websocket object to wrap.
  */
 function RpcSocket(ws) {
 
@@ -118,10 +118,10 @@ RpcSocket.prototype.basicSend=function(data) {
 
 
 /**
- * Sends as message through the websocket
- * @param {string} MessageType The message's type
- * @param {any} UserData The data to send
- * @returns {void} nothing
+ * Sends a message through a websocket.
+ * @param {string} MessageType The message's type.
+ * @param {any} UserData The data to send.
+ * @returns {void} nothing.
  */
 RpcSocket.prototype.send=function(messageType,userData) {
         var data=this.wrapMessage(userData,messageType);
@@ -129,11 +129,11 @@ RpcSocket.prototype.send=function(messageType,userData) {
 }
 
 /**
- * Makes an RPC call through the websocket
- * @param {string} MessageType The message's type
- * @param {any} UserData The data to send
- * @param {function} ReplyHandler The reply handler to call when the response arrives from the server
- * @returns {void} nothing
+ * Makes an RPC call through a websocket.
+ * @param {string} MessageType The message's type (=function name).
+ * @param {any} UserData The data to send.
+ * @param {function} ReplyHandler The reply handler to call when the response arrives from the server.
+ * @returns {void} nothing.
  */
 RpcSocket.prototype.rpc=function(messageType,userData,replyHandler) {
         var data=this.wrapMessage(userData,messageType,this.currentMsgid,'request');
@@ -144,8 +144,8 @@ RpcSocket.prototype.rpc=function(messageType,userData,replyHandler) {
 }
 
 /**
- * Closes the websocket
- * @returns {void} nothing
+ * Closes the websocket.
+ * @returns {void} nothing.
  */
 RpcSocket.prototype.close=function() {
         this.removeAllListeners();
