@@ -19,7 +19,7 @@ _Params_
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
 
-#### rpc(MessageType, UserData, The)
+#### rpc(MessageType, UserData, ReplyHandler)
 
 Makes an RPC call through the websocket
 
@@ -27,7 +27,7 @@ _Params_
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
-* **function** *The* reply handler to call when the response arrives from the server
+* **function** *ReplyHandler* The reply handler to call when the response arrives from the server
 
 #### close()
 

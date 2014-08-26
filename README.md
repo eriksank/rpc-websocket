@@ -19,7 +19,7 @@
 7.1\.  [Socket](#socket-1)  
 7.1.1\.  [RpcSocket(ws)](#rpcsocketws)  
 7.1.2\.  [send(MessageType, UserData)](#sendmessagetypeuserdata)  
-7.1.3\.  [rpc(MessageType, UserData, The)](#rpcmessagetypeuserdatathe)  
+7.1.3\.  [rpc(MessageType, UserData, ReplyHandler)](#rpcmessagetypeuserdatareplyhandler)  
 7.1.4\.  [close()](#close)  
 7.2\.  [Server](#server-1)  
 7.2.1\.  [RpcServer(server)](#rpcserverserver)  
@@ -437,9 +437,9 @@ _Params_
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
 
-<a name="rpcmessagetypeuserdatathe"></a>
+<a name="rpcmessagetypeuserdatareplyhandler"></a>
 
-#### 7.1.3\. rpc(MessageType, UserData, The)
+#### 7.1.3\. rpc(MessageType, UserData, ReplyHandler)
 
 Makes an RPC call through the websocket
 
@@ -447,7 +447,7 @@ _Params_
 
 * **string** *MessageType* The message's type
 * **any** *UserData* The data to send
-* **function** *The* reply handler to call when the response arrives from the server
+* **function** *ReplyHandler* The reply handler to call when the response arrives from the server
 
 <a name="close"></a>
 
