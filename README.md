@@ -421,6 +421,8 @@ A network-level message is an object with the following fields:
 
 #### 7.1.1\. RpcSocket(ws)
 
+Constructor. Wraps a websocket object
+
 **Params** 
 
 * **object** *ws* The websocket object to wrap
@@ -469,6 +471,8 @@ Closes the websocket
 <a name="rpcserverserver"></a>
 
 #### 7.2.1\. RpcServer(server)
+
+Constructor. Wraps a websocket server object
 
 <a name="params"></a>
 

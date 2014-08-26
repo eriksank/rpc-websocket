@@ -4,6 +4,8 @@
 
 #### RpcSocket(ws)
 
+Constructor. Wraps a websocket object
+
 **Params** 
 
 * **object** *ws* The websocket object to wrap

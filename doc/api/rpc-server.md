@@ -4,6 +4,8 @@
 
 #### RpcServer(server)
 
+Constructor. Wraps a websocket server object
+
 ##### Params 
 
 * **object** *server* The server object to wrap
