@@ -493,7 +493,7 @@ Closes the server object.
 * Standard websockets: [engine.io](https://github.com/Automattic/engine.io), [engine.io-client](https://github.com/Automattic/engine.io-client)
 * browser support: [browserify](https://github.com/substack/node-browserify), [uglifyjs](https://github.com/mishoo/UglifyJS)
 * Unit tests: [mocha](https://github.com/visionmedia/mocha)
-* Documentation: [jsdoc2md](https://github.com/75lb/jsdoc-to-markdown), [markdown-pp.py](https://github.com/jreese/markdown-pp)
+* Documentation: [markdox](https://github.com/cbou/markdox), [markdown-pp.py](https://github.com/jreese/markdown-pp)
 
 <a name="building"></a>
 
