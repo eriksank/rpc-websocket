@@ -1,29 +1,31 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-# RPC Websocket
 # Written by Erik Poupaert, Cambodia
 # (c) 2014
 # Licensed under the LGPL
 
+# Browserifies and uglifies the files for the web browser
+# Builds the documentation in README.md
+
+## get config
+
+source ./config.sh
+
 ## add web support
 
-browserify lib/rpc-socket.js -o browser-support/rpc-websocket-bundle.js
-uglifyjs browser-support/rpc-websocket-bundle.js -o browser-support/rpc-websocket-bundle.min.js
+browserify $browserMainFile -o browser-support/$project-bundle.js
+uglifyjs browser-support/$project-bundle.js -o browser-support/$project-bundle.min.js
 
 ## build API documentation
 
-markdox lib/rpc-socket.js -o doc/api/rpc-socket.draft.md
-markdox lib/rpc-server.js -o doc/api/rpc-server.draft.md
-
-## fix the headings
-
-sed -e 's/^### Params:/_Params_/' -e 's/^##[^#]/#### /'  doc/api/rpc-socket.draft.md > \
-       doc/api/rpc-socket.md
-rm -f doc/api/rpc-socket.draft.md
-
-sed -e 's/^### Params:/_Params_/' -e 's/^##[^#]/#### /' doc/api/rpc-server.draft.md > \
-       doc/api/rpc-server.md
-rm -f doc/api/rpc-server.draft.md
+for apiFile in $apiFiles; do
+        basename=$(basename $apiFile .js)
+        echo $apiFile $basename
+        markdox $apiFile -o doc/api/$basename.draft.md
+        sed -e 's/^### Params:/_Params_/' -e 's/^##[^#]/#### /'  doc/api/$basename.draft.md > \
+               doc/api/$basename.md
+        rm -f doc/api/$basename.draft.md
+done
 
 ## create first draft of README.md
 
@@ -38,8 +40,8 @@ rm -f README.draft.1.md
 
 ## replace ../index.js and ../../index.js by rpc-websocket
 
-sed -e 's/\.\.\/\.\.\/index.js/rpc-websocket/' \
-        -e 's/\.\.\/index.js/rpc-websocket/' README.draft.2.md > \
+sed -e 's/\.\.\/\.\.\/index.js/'$project'/' \
+        -e 's/\.\.\/index.js/'$project'/' README.draft.2.md > \
        README.md
 rm -f README.draft.2.md
 
