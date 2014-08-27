@@ -10,7 +10,7 @@ var par = require('par');
 
 /**
  * Constructor. Wraps a websocket object.
- * @param {object} ws The websocket object to wrap.
+ * @param {object} webSocket The websocket object to wrap.
  */
 function RpcSocket(ws) {
 
@@ -118,8 +118,8 @@ RpcSocket.prototype.basicSend=function(data) {
 
 /**
  * Sends a message through a websocket.
- * @param {string} MessageType The message's type.
- * @param {any} UserData The data to send.
+ * @param {string} messageType The message's type.
+ * @param {any} userData The data to send.
  * @returns {void} nothing.
  */
 RpcSocket.prototype.send=function(messageType,userData) {
@@ -129,9 +129,9 @@ RpcSocket.prototype.send=function(messageType,userData) {
 
 /**
  * Makes an RPC call through a websocket.
- * @param {string} MessageType The message's type (=function name).
- * @param {any} UserData The data to send.
- * @param {function} ReplyHandler The reply handler to call when the response arrives from the server.
+ * @param {string} messageType The message's type (=function name).
+ * @param {any} userData The data to send.
+ * @param {function} replyHandler The reply handler to call when the response arrives from the server.
  * @returns {void} nothing.
  */
 RpcSocket.prototype.rpc=function(messageType,userData,replyHandler) {

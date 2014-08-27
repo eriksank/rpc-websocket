@@ -17,9 +17,9 @@
 6.2\.  [Socket](#socket)  
 7\.  [API](#api)  
 7.1\.  [Socket](#socket-1)  
-7.1.1\.  [RpcSocket(ws)](#rpcsocketws)  
-7.1.2\.  [send(MessageType, UserData)](#sendmessagetypeuserdata)  
-7.1.3\.  [rpc(MessageType, UserData, ReplyHandler)](#rpcmessagetypeuserdatareplyhandler)  
+7.1.1\.  [RpcSocket(webSocket)](#rpcsocketwebsocket)  
+7.1.2\.  [send(messageType, userData)](#sendmessagetypeuserdata)  
+7.1.3\.  [rpc(messageType, userData, replyHandler)](#rpcmessagetypeuserdatareplyhandler)  
 7.1.4\.  [close()](#close)  
 7.2\.  [Server](#server-1)  
 7.2.1\.  [RpcServer(server)](#rpcserverserver)  
@@ -423,38 +423,38 @@ A network-level message is an object with the following fields:
 
 <!-- Start lib/rpc-socket.js -->
 
-<a name="rpcsocketws"></a>
+<a name="rpcsocketwebsocket"></a>
 
-#### 7.1.1\. RpcSocket(ws)
+#### 7.1.1\. RpcSocket(webSocket)
 
 Constructor. Wraps a websocket object.
 
 _Params_ 
 
-* **object** *ws* The websocket object to wrap.
+* **object** *webSocket* The websocket object to wrap.
 
 <a name="sendmessagetypeuserdata"></a>
 
-#### 7.1.2\. send(MessageType, UserData)
+#### 7.1.2\. send(messageType, userData)
 
 Sends a message through a websocket.
 
 _Params_ 
 
-* **string** *MessageType* The message's type.
-* **any** *UserData* The data to send.
+* **string** *messageType* The message's type.
+* **any** *userData* The data to send.
 
 <a name="rpcmessagetypeuserdatareplyhandler"></a>
 
-#### 7.1.3\. rpc(MessageType, UserData, ReplyHandler)
+#### 7.1.3\. rpc(messageType, userData, replyHandler)
 
 Makes an RPC call through a websocket.
 
 _Params_ 
 
-* **string** *MessageType* The message's type (=function name).
-* **any** *UserData* The data to send.
-* **function** *ReplyHandler* The reply handler to call when the response arrives from the server.
+* **string** *messageType* The message's type (=function name).
+* **any** *userData* The data to send.
+* **function** *replyHandler* The reply handler to call when the response arrives from the server.
 
 <a name="close"></a>
 

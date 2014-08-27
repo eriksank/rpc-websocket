@@ -2,32 +2,32 @@
 
 <!-- Start lib/rpc-socket.js -->
 
-#### RpcSocket(ws)
+#### RpcSocket(webSocket)
 
 Constructor. Wraps a websocket object.
 
 _Params_ 
 
-* **object** *ws* The websocket object to wrap.
+* **object** *webSocket* The websocket object to wrap.
 
-#### send(MessageType, UserData)
+#### send(messageType, userData)
 
 Sends a message through a websocket.
 
 _Params_ 
 
-* **string** *MessageType* The message's type.
-* **any** *UserData* The data to send.
+* **string** *messageType* The message's type.
+* **any** *userData* The data to send.
 
-#### rpc(MessageType, UserData, ReplyHandler)
+#### rpc(messageType, userData, replyHandler)
 
 Makes an RPC call through a websocket.
 
 _Params_ 
 
-* **string** *MessageType* The message's type (=function name).
-* **any** *UserData* The data to send.
-* **function** *ReplyHandler* The reply handler to call when the response arrives from the server.
+* **string** *messageType* The message's type (=function name).
+* **any** *userData* The data to send.
+* **function** *replyHandler* The reply handler to call when the response arrives from the server.
 
 #### close()
 
