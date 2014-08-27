@@ -296,7 +296,7 @@ ws.on('afterReceive',function(data) {
 
 ### 5.5\. Example 4
 
-For: `Looping over RPC calls`
+For: _Looping over RPC calls_
 
 You could easily run into very subtle bugs when you start looping over RPC calls. For example:
 
