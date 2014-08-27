@@ -152,7 +152,9 @@ node doc/examples/1-send-client.js
 
 For: _Sending/receiving typed messages_
 
-**The client:**
+**Programs**
+
+_The client_
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
@@ -176,7 +178,7 @@ ws.on('test/mtype2', function(data) {
 
 ```
 
-**The server:**
+_The server_
 
 ```javascript
 var engine = require('engine.io');
@@ -202,6 +204,18 @@ wss.on('connection', function(ws) {
 
 ```
 
+**Output**
+
+_The client_
+
+        something back
+
+_The server_
+
+        server started ...
+        received: something
+        received: something
+
 As you can see, you can just resort to a naming convention to create something like a _test_ channel or namespace.
 
 <a name="example2"></a>
@@ -212,7 +226,9 @@ For: _Making RPC calls_
 
 You can let the client make RPC calls to the server, but you can also let the server make RPC calls to the client. Server-to-client RPC calls are not possible with ajax. The fact that this is not possible, endlessly complicates the construction of particular types of applications such as real-time chat boxes.
 
-**The client:**
+**Programs**
+
+_The client_
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
@@ -230,7 +246,7 @@ ws.on('open', function() {
 
 ```
 
-**The server:**
+_The server_
 
 ```javascript
 var engine = require('engine.io');
@@ -251,6 +267,17 @@ wss.on('connection', function(ws) {
 
 ```
 
+**Output**
+
+_The client_
+
+        received the following reply:something back
+
+_The server_
+
+        server started ...
+        received: something
+
 <a name="example3"></a>
 
 ### 5.4\. Example 3
@@ -258,6 +285,10 @@ wss.on('connection', function(ws) {
 For: _Handling before/after send/receive events_
 
 You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message. You can also use the `beforeReceive` and `afterReceive` events. Here an example:
+
+**Programs**
+
+_The client_
 
 ```javascript
 var ioSocket = require('engine.io-client')('ws://localhost:8081');
@@ -291,6 +322,43 @@ ws.on('afterReceive',function(data) {
 });
 
 ```
+_The server_
+
+```javascript
+var engine = require('engine.io');
+var server = engine.listen(8081);
+var RpcServer=require('rpc-websocket').server;
+var wss=new RpcServer(server);
+
+console.log('server started ...');
+
+wss.on('connection', function(ws) {
+        ws.on('test-type', function(message) {
+                console.log('received: %s', message);
+        });
+
+        ws.send('test-type','something back');
+
+});
+
+
+```
+
+**Output**
+
+_The client_
+
+        before sending:{"data":"changed before sending","messageType":"test-type"}
+        after sending:{"data":"changed before sending","messageType":"test-type"}
+        before receiving:{"data":"something back","messageType":"test-type"}
+        something back
+        after receiving:{"data":"something back","messageType":"test-type"}
+
+_The server_
+
+        server started ...
+        received: changed before sending
+
 
 <a name="example4"></a>
 
