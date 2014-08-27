@@ -8,4 +8,5 @@ browserMainFile=lib/rpc-socket.js
 
 #generate documentation of:
 apiFiles="lib/rpc-socket.js lib/rpc-server.js"
+newMarkDownLevelForFunctionHeadings=4
 
