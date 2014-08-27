@@ -8,10 +8,10 @@
 4\.  [Browser support](#browsersupport)  
 5\.  [Examples](#examples)  
 5.1\.  [Running the examples](#runningtheexamples)  
-5.2\.  [Sending/receiving typed messages](#sending/receivingtypedmessages)  
-5.3\.  [Making RPC calls](#makingrpccalls)  
-5.4\.  [Handling before/after send/receive events](#handlingbefore/aftersend/receiveevents)  
-5.5\.  [Looping over RPC calls](#loopingoverrpccalls)  
+5.2\.  [Example 1](#example1)  
+5.3\.  [Example 2](#example2)  
+5.4\.  [Example 3](#example3)  
+5.5\.  [Example 4](#example4)  
 6\.  [Events supported](#eventssupported)  
 6.1\.  [Server](#server)  
 6.2\.  [Socket](#socket)  
@@ -146,9 +146,11 @@ cd myproject/node_modules/rpc-websocket
 node doc/examples/1-send-client.js
 ```
 
-<a name="sending/receivingtypedmessages"></a>
+<a name="example1"></a>
 
-### 5.2\. Sending/receiving typed messages
+### 5.2\. Example 1
+
+For: _Sending/receiving typed messages_
 
 **The client:**
 
@@ -202,9 +204,11 @@ wss.on('connection', function(ws) {
 
 As you can see, you can just resort to a naming convention to create something like a _test_ channel or namespace.
 
-<a name="makingrpccalls"></a>
+<a name="example2"></a>
 
-### 5.3\. Making RPC calls
+### 5.3\. Example 2
+
+For: _Making RPC calls_
 
 You can let the client make RPC calls to the server, but you can also let the server make RPC calls to the client. Server-to-client RPC calls are not possible with ajax. The fact that this is not possible, endlessly complicates the construction of particular types of applications such as real-time chat boxes.
 
@@ -247,9 +251,11 @@ wss.on('connection', function(ws) {
 
 ```
 
-<a name="handlingbefore/aftersend/receiveevents"></a>
+<a name="example3"></a>
 
-### 5.4\. Handling before/after send/receive events
+### 5.4\. Example 3
+
+For: _Handling before/after send/receive events_
 
 You can use the `beforeSend` event to make changes to the message that is about to be sent. You can use the `afterSend` event to do some logging, for example, after successfully sending a message. You can also use the `beforeReceive` and `afterReceive` events. Here an example:
 
@@ -286,9 +292,11 @@ ws.on('afterReceive',function(data) {
 
 ```
 
-<a name="loopingoverrpccalls"></a>
+<a name="example4"></a>
 
-### 5.5\. Looping over RPC calls
+### 5.5\. Example 4
+
+For: `Looping over RPC calls`
 
 You could easily run into very subtle bugs when you start looping over RPC calls. For example:
 
