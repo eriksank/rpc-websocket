@@ -37,7 +37,6 @@
 13\.  [Other publications](#otherpublications)  
 14\.  [License](#license)  
 
-
 <a name="synopsis"></a>
 
 ##1\. Synopsis
@@ -499,7 +498,7 @@ Closes the server object.
 
 ## 9\. Building
 
-Execute the `build.sh` script to re-build the project from sources.
+Execute the `build.sh` script to re-build the project from sources. It will re-generate the browser support files and the documentation.
 
 <a name="testing"></a>
 
