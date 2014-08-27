@@ -11,6 +11,8 @@ if [ "$1" = "" ] ; then
         exit 1
 fi
 
+mocha
+
 message="$1"
 
 ./build.sh

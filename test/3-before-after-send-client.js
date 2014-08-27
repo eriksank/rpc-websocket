@@ -1,7 +1,7 @@
 var assert=require('assert');
 var ChildProcess=require('child_process');
 
-describe('send', function(){
+describe('before/after send/receive', function(){
         it('should receive an event before/after sending', function(){
 
                 //start test server
