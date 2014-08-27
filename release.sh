@@ -8,23 +8,30 @@
 # updates the LAST-VERSION file 
 # and pushes the source to both git and npm
 
+
 if [ "$1" = "" ] ; then
-        echo "usage: $0 version"
+        echo "usage: $0 version commit-message"
+        exit 1
+fi
+
+if [ "$2" = "" ] ; then
+        echo "usage: $0 version commit-message"
         exit 1
 fi
 
 version="$1"
+message="$2"
 
 rm -f LAST-VERSION_*
-echo "$1" > "LAST-VERSION_$1"
+echo "changes to previous version: $message" > "LAST-VERSION_$version"
 
-cat package.json | sed 's/"version": "\(.*\)"/"version": "'$1'"/' > package.json.draft
+cat package.json | sed 's/"version": "\(.*\)"/"version": "'$version'"/' > package.json.draft
 rm -f package.json
 mv package.json.draft package.json
 
-./push.sh "version $version"
+./push.sh "version $version: $message"
 
-git tag -a "$version" -m "$version"
+git tag -a "$version" -m "$version: $message"
 git push origin --tags
 npm publish
 
