@@ -1,7 +1,7 @@
 {
         "name" : "rpc-websocket",
-        "version": "0.7.4",
-        "description" : "RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and for before/after send/receive events.",
+        "version": "0.7.5",
+        "description" : "RPC WebSocket is a wrapper for standard websockets that adds support for message types, RPC, and for before/after send/receive events. It is an alternative to ajax, socket.io, and JSON-RPC.",
         "author" : "Erik Poupaert <erik@sankuru.biz>",
         "main" : "index.js",
          "repository": {
